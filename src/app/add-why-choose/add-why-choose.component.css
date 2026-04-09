@@ -36,7 +36,7 @@
   flex: 1;
 }
 
-/* 🔥 SCROLL BOX */
+
 .scroll-box {
   max-height: 400px; /* FIX HEIGHT */
   overflow-y: auto;
@@ -103,8 +103,8 @@
   }
 
   /* OPTION 1 (Recommended): Remove scroll on mobile */
-  .scroll-box {
+  /* .scroll-box {
     max-height: none;
     overflow: visible;
-  }
+  } */
 }
