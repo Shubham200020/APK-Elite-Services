@@ -1,0 +1,30 @@
+<nav class="navbar">
+
+  <!-- Logo -->
+  <div class="logo">
+    <div class="logo-box">
+      <img src="assets\images\logo-res.png" alt="Logo" height="100%" >
+    </div>
+    <span>APK Elite Services</span>
+  </div>
+
+  <!-- Menu -->
+  <ul class="nav-links" [class.active]="menuOpen">
+    <li><a href="#home">HOME</a></li>
+    <li><a href="#services">SERVICES</a></li>
+    <li><a href="#heroSection">ABOUT</a></li>
+    <li><a href="#mission">Mission/Vision</a></li>
+  </ul>
+
+  <!-- Buttons -->
+  <!-- <div class="nav-buttons">
+    <button class="login">Log in</button>
+    <button class="start">Get Started</button>
+  </div> -->
+
+  <!-- Hamburger -->
+  <div class="hamburger" (click)="toggleMenu()">
+    ☰
+  </div>
+
+</nav>

@@ -1,0 +1,8 @@
+.nav{
+    
+  position: sticky;
+  top: 0;
+  z-index: 1000; /* important */
+  background: white; /* or your color */
+
+}

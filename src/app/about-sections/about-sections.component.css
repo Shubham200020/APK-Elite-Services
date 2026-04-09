@@ -1,0 +1,122 @@
+/* ===== BASE (DESKTOP) ===== */
+
+.hero{
+display:flex;
+align-items:center;
+justify-content:center;
+padding:60px 80px;
+min-height:100vh;
+background:#f7f9fc;
+gap:40px;
+overflow:hidden;
+margin-top: 0%;
+}
+
+.hero-text,
+.hero-image{
+flex:1;
+max-width:50%;
+transition:all 0.8s ease;
+}
+
+/* INITIAL HIDDEN */
+
+.hero-text{
+opacity:0;
+transform:translateX(-60px);
+}
+
+.hero-image{
+opacity:0;
+transform:translateX(60px);
+}
+
+/* SHOW */
+
+.hero.show .hero-text,
+.hero.show .hero-image{
+opacity:1;
+transform:translateX(0);
+}
+
+/* IMAGE */
+
+.hero-image img{
+width:100%;
+max-width:500px;
+}
+
+/* ========================= */
+/* 📱 TABLET (≤1024px) */
+/* ========================= */
+
+@media(max-width:1024px){
+
+.hero{
+padding:50px 40px;
+gap:20px;
+}
+
+.hero-text h1{
+font-size:34px;
+}
+
+.hero-image img{
+max-width:400px;
+}
+
+}
+
+/* ========================= */
+/* 📱 MOBILE (≤768px) */
+/* ========================= */
+
+@media(max-width:768px){
+
+.hero{
+flex-direction:column;
+text-align:center;
+padding:40px 20px;
+}
+
+/* FULL WIDTH */
+
+.hero-text,
+.hero-image{
+max-width:100%;
+}
+
+/* 🔥 IMPORTANT: change animation direction */
+
+.hero-text{
+transform:translateY(40px);
+}
+
+.hero-image{
+transform:translateY(40px);
+}
+
+/* SHOW */
+
+.hero.show .hero-text,
+.hero.show .hero-image{
+transform:translateY(0);
+}
+
+/* TEXT FIX */
+
+.hero-text h1{
+font-size:26px;
+}
+
+.hero-text p{
+font-size:14px;
+}
+
+/* IMAGE FIX */
+
+.hero-image img{
+max-width:300px;
+}
+
+}

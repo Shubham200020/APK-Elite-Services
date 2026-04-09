@@ -1,0 +1,125 @@
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial;
+}
+
+body{
+background:#f5f6fa;
+}
+
+/* Navbar */
+
+.navbar{
+display:flex;
+align-items:center;
+justify-content:space-between;
+padding:18px 60px;
+background:white;
+box-shadow:0 2px 8px rgba(0,0,0,0.05);
+position:relative;
+}
+
+/* Logo */
+
+.logo{
+display:flex;
+align-items:center;
+font-size:20px;
+font-weight:600;
+color:#2c3e50;
+}
+
+.logo-box{
+width:36px;
+height:36px;
+
+color:rgb(139, 144, 138);
+display:flex;
+align-items:center;
+justify-content:center;
+border-radius:8px;
+margin-right:8px;
+}
+
+/* Links */
+
+.nav-links{
+list-style:none;
+display:flex;
+gap:35px;
+}
+
+.nav-links a{
+text-decoration:none;
+color:#444;
+font-size:16px;
+}
+
+/* Buttons */
+
+.nav-buttons{
+display:flex;
+gap:10px;
+}
+.logo .logo-box img{
+    border-radius: 50%;
+}
+.login{
+padding:8px 16px;
+border:1px solid #893737;
+background:rgb(137, 11, 11);
+border-radius:6px;
+cursor:pointer;
+}
+
+.start{
+padding:8px 18px;
+background:linear-gradient(135deg,#f5f6fa,#7e6f9e);
+color:white;
+border:none;
+border-radius:6px;
+cursor:pointer;
+}
+
+/* Hamburger */
+
+.hamburger{
+display:none;
+font-size:26px;
+cursor:pointer;
+}
+
+/* Mobile */
+
+@media (max-width:768px){
+
+.nav-links{
+display:none;
+flex-direction:column;
+position:absolute;
+top:70px;
+left:0;
+width:100%;
+background:white;
+padding:20px;
+}
+
+.nav-links.active{
+display:flex;
+}
+
+.nav-buttons{
+display:none;
+}
+
+.hamburger{
+display:block;
+}
+
+.navbar{
+padding:18px 25px;
+}
+
+}

@@ -1,0 +1,42 @@
+<section class="services" id="services">
+  <div class="container" >
+
+    <h2 class="title">Our Services</h2>
+    <p class="subtitle">
+      Find out below how our services can meet your organisation’s needs.
+    </p>
+
+   <div 
+  class="service-card" 
+  *ngFor="let service of arr; let i = index"
+  [ngClass]="{ 'reverse': i % 2 !== 0 }"
+>
+
+  <!-- IMAGE -->
+  <div class="image">
+    <img [src]="service.imageUrl" alt="service" />
+  </div>
+
+  <!-- CONTENT -->
+  <div class="content">
+    <h3>{{ service.title }}</h3>
+
+    <!-- SHORT / FULL TEXT -->
+    <p>
+      {{
+        service.expanded
+          ? service.description
+          : (service.description | slice:0:160) + '...'
+      }}
+    </p>
+
+    <!-- BUTTON -->
+    <button class="btn" (click)="toggle(service)">
+      {{ service.expanded ? 'Show Less' : 'Learn More' }}
+    </button>
+  </div>
+
+</div>
+
+  </div>
+</section>
