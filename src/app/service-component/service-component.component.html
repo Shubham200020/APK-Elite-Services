@@ -19,14 +19,14 @@
 
   <!-- CONTENT -->
   <div class="content">
-    <h3>{{ service.title }}</h3>
+    <h2>{{ service.title }}</h2>
 
     <!-- SHORT / FULL TEXT -->
     <p>
       {{
         service.expanded
           ? service.description
-          : (service.description | slice:0:160) + '...'
+          : (service.description | slice:0:200) + '...'
       }}
     </p>
 

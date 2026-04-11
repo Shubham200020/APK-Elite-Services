@@ -18,78 +18,77 @@ export class ServiceComponentComponent {
  arr: any[] = [
   {
     title: "Deep Cleaning Services",
-    description: "Our deep cleaning services provide a comprehensive cleaning solution that targets every corner of your space. From removing stubborn stains and accumulated dust to sanitizing high-touch surfaces, we ensure a hygienic and fresh environment. We use advanced equipment and eco-friendly cleaning agents to eliminate bacteria, allergens, and odors, making your home or workplace healthier and safer.",
+    description: "Our deep cleaning services go beyond regular cleaning to deliver a thorough, top-to-bottom transformation of your space. We meticulously clean hard-to-reach areas, remove stubborn stains, grease, and accumulated dust, and sanitize high-touch surfaces such as switches, handles, and countertops. Using advanced equipment and eco-friendly chemicals, we eliminate harmful bacteria, allergens, and odors, ensuring a hygienic, fresh, and healthier living or working environment.",
     imageUrl: "/assets/images/deep-clean.jpg",
     expanded: false
   },
   {
     title: "Facade Cleaning Services",
-    description: "Our facade cleaning services help maintain the external appearance of your building by removing dirt, pollutants, and stains from surfaces like glass, metal, and stone. Using modern techniques such as high-pressure washing and rope access cleaning, we ensure safety and efficiency while restoring the building’s original shine and enhancing its visual appeal.",
+    description: "Our facade cleaning services are designed to restore and maintain the external beauty of your building. We remove dirt, pollution, algae, and stains from surfaces including glass, metal, and stone. Using advanced techniques such as high-pressure jet cleaning and rope-access methods, our trained professionals ensure safe, efficient, and damage-free cleaning. This not only enhances the building’s appearance but also increases its lifespan and value.",
     imageUrl: "/assets/images/home-img.jpg",
     expanded: false
   },
   {
     title: "Floor Polishing Services",
-    description: "We specialize in floor polishing services that restore the natural shine and durability of your floors. Whether it's marble, granite, tiles, or wooden flooring, our team uses high-quality polishing compounds and advanced machinery to remove scratches, dullness, and stains, leaving your floors smooth, glossy, and long-lasting.",
+    description: "We provide expert floor polishing services to bring back the original shine and durability of your flooring. Whether it's marble, granite, vitrified tiles, or wooden floors, we use high-grade polishing compounds and modern machines to remove scratches, stains, and dullness. Our process enhances surface smoothness, adds a glossy finish, and protects your floors from future wear and tear.",
     imageUrl: "/assets/images/floor-clean.jpg",
     expanded: false
   },
   {
     title: "Tank Cleaning Services",
-    description: "Our tank cleaning services ensure clean and safe water storage by removing sludge, dirt, and harmful bacteria from water tanks. We follow a systematic cleaning and disinfection process using safe chemicals and modern equipment to maintain hygiene and prevent water contamination.",
-    imageUrl: "/assets/images/deepcleaning.jpg",
+    description: "Our professional tank cleaning services ensure safe and hygienic water storage by removing sludge, dirt, and harmful contaminants. We follow a multi-step process including draining, scrubbing, vacuum cleaning, and disinfection using safe and approved chemicals. This prevents bacterial growth and ensures clean, safe water for everyday use.",
+    imageUrl: "/assets/images/tank-clean.jpg",
     expanded: false
   },
   {
     title: "Office Cleaning Services",
-    description: "We offer professional office cleaning services to create a clean, organized, and productive work environment. Our services include dusting, vacuuming, sanitizing workstations, and maintaining common areas. A clean office not only improves employee productivity but also creates a positive impression on clients and visitors.",
-    imageUrl: "/assets/images/deepcleaning.jpg",
+    description: "We offer comprehensive office cleaning services to maintain a clean, organized, and productive workspace. Our services include dusting, vacuuming, floor cleaning, sanitizing workstations, and maintaining common areas such as meeting rooms and restrooms. A clean office boosts employee productivity, promotes health, and leaves a lasting impression on clients and visitors.",
+    imageUrl: "/assets/images/office-clean.jpg",
     expanded: false
   },
   {
-    title: "Post Construction Cleaning Services (Project Cleaning)",
-    description: "After construction or renovation, our post-construction cleaning services ensure your space is ready for use. We remove debris, dust, paint stains, and construction residues from all surfaces. Our team pays attention to detail, ensuring every corner is clean, polished, and safe for occupancy.",
-    imageUrl: "/assets/images/PESTCONTROL.jpg",
+    title: "Post Construction Cleaning Services",
+    description: "Our post-construction cleaning services prepare your property for immediate use after construction or renovation. We remove debris, fine dust, paint stains, adhesive residues, and construction waste from all surfaces. Our team ensures detailed cleaning of floors, walls, windows, and fixtures, leaving your space spotless, safe, and ready to occupy.",
+    imageUrl: "/assets/images/post-construction.jpg",
     expanded: false
   },
   {
     title: "Pest Control Services",
-    description: "Our pest control services effectively eliminate pests such as termites, cockroaches, rodents, and insects. We use safe and eco-friendly treatments to protect your home and workplace from infestations. Regular pest control helps maintain hygiene, prevents damage, and ensures a healthy living environment.",
-    imageUrl: "/assets/images/deepcleaning.jpg",
+    description: "Our pest control services provide effective solutions to eliminate and prevent infestations of termites, cockroaches, rodents, and other pests. We use safe, eco-friendly, and government-approved chemicals to ensure the safety of your family and employees. Regular pest control helps protect property, maintain hygiene, and create a healthy environment.",
+    imageUrl: "/assets/images/pest-control.jpg",
     expanded: false
   },
   {
     title: "Home & Office Sanitization Services",
-    description: "We provide complete sanitization services for homes and offices to eliminate germs, viruses, and bacteria. Using hospital-grade disinfectants and fogging techniques, we ensure thorough sanitization of all surfaces, making your environment safe, especially during health-sensitive situations.",
-    imageUrl: "/assets/images/deepcleaning.jpg",
+    description: "We provide advanced sanitization services for homes and offices to eliminate germs, viruses, and bacteria. Using hospital-grade disinfectants and fogging machines, we ensure deep sanitization of all surfaces, including high-contact areas. This service is ideal for maintaining hygiene during health-sensitive situations and ensuring a safe environment.",
+    imageUrl: "/assets/images/home-sanitization.jpg",
     expanded: false
   },
   {
     title: "Carpet Cleaning Services",
-    description: "Our carpet cleaning services remove deep-seated dirt, stains, and allergens from your carpets. Using steam cleaning and advanced extraction methods, we restore freshness, improve indoor air quality, and extend the life of your carpets.",
-    imageUrl: "/assets/images/deepcleaning.jpg",
+    description: "Our carpet cleaning services effectively remove deep-seated dirt, dust, stains, and allergens from your carpets. We use steam cleaning and advanced extraction techniques to restore freshness, improve indoor air quality, and extend the life of your carpets. Your carpets will look cleaner, smell fresher, and feel softer.",
+    imageUrl: "assets/images/carppet-clean.jpg",
     expanded: false
   },
   {
     title: "Chair Shampooing / Cleaning Services",
-    description: "We offer professional chair cleaning and shampooing services to remove stains, dust, and bacteria from office and home seating. Our process ensures deep cleaning without damaging the fabric, providing a clean, fresh, and comfortable seating experience.",
-    imageUrl: "/assets/images/deepcleaning.jpg",
+    description: "We offer specialized chair cleaning and shampooing services for office and home furniture. Our process removes stains, dust, and bacteria while preserving fabric quality. Using safe cleaning solutions and advanced tools, we ensure deep cleaning, quick drying, and a fresh, hygienic seating experience.",
+    imageUrl: "assets/images/chair-sampooing.jpg",
     expanded: false
   },
   {
     title: "Sofa Shampooing / Cleaning Services",
-    description: "Our sofa cleaning services effectively remove dirt, stains, and odors from fabric and leather sofas. We use specialized cleaning solutions and equipment to restore the original look and feel of your furniture, ensuring hygiene and comfort.",
+    description: "Our sofa cleaning services restore the beauty and hygiene of your furniture by removing dirt, stains, allergens, and odors. We use fabric-safe and leather-friendly cleaning methods to ensure deep cleaning without damage. This improves comfort, appearance, and the lifespan of your sofas.",
     imageUrl: "/assets/images/Sofacleaning.jpg",
     expanded: false
   },
   {
     title: "Gardening Services",
-    description: "We provide professional gardening services to design, maintain, and enhance your outdoor spaces. From lawn care and plant maintenance to landscaping and seasonal planting, our team ensures your garden remains healthy, attractive, and well-maintained throughout the year.",
-    imageUrl: "/assets/images/deepcleaning.jpg",
+    description: "Our gardening services help you create and maintain beautiful outdoor spaces. From lawn care and plant maintenance to landscaping and seasonal planting, we ensure your garden remains healthy, vibrant, and well-maintained. We focus on enhancing aesthetics while promoting sustainable plant growth.",
+    imageUrl: "/assets/images/garden-clean.jpg",
     expanded: false
   }
 ];
-
    @ViewChild('heroSection') heroSection!: ElementRef;
 
 ngAfterViewInit() {
