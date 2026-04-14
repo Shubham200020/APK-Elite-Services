@@ -9,7 +9,7 @@ import { PhonePipe } from "../phone.pipe";
   styleUrl: './add-footer.component.css'
 })
 export class AddFooterComponent {
-  email: string = 'sakshik1915@gmail.com';
-  phone: string = ' 820 875 7735';
+  email: string = 'info@apkeliteservices.in';
+  phone: string = '8830167863';
 currentYear = new Date().getFullYear();
 }
