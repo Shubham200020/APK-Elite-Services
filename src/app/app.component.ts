@@ -7,7 +7,7 @@ import { ServiceComponentComponent } from "./service-component/service-component
 import { AddWhyChooseComponent } from "./add-why-choose/add-why-choose.component";
 import { AddMissionComponent } from "./add-mission/add-mission.component";
 import { AddFooterComponent } from "./add-footer/add-footer.component";
-
+ import { Title, Meta } from '@angular/platform-browser';
 @Component({
   selector: 'app-root',
   standalone: true,
@@ -16,5 +16,17 @@ import { AddFooterComponent } from "./add-footer/add-footer.component";
   styleUrl: './app.component.css'
 })
 export class AppComponent {
-  title = 'my-website';
+  //title = 'APK Elite Services';
+ 
+
+constructor(private title: Title, private meta: Meta) {}
+
+ngOnInit() {
+  this.title.setTitle('Web Development Services in Pune');
+
+  this.meta.updateTag({
+    name: 'description',
+    content: 'Professional web development services in Pune by APK Elite Services.'
+  });
+}
 }
