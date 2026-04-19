@@ -29,7 +29,7 @@
 }
 .container {
   height: 100vh;
-    background-image: url("/assets/images/home-img1.jpg");
+    background-image: url("/assets/images/home-img1.webp");
   background-size: cover;
   background-position: center;   /* center image */
   background-repeat: no-repeat;
