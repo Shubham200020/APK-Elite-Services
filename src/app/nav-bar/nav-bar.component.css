@@ -11,115 +11,110 @@ background:#f5f6fa;
 
 /* Navbar */
 
-.navbar{
-display:flex;
-align-items:center;
-justify-content:space-between;
-padding:18px 60px;
-background:white;
-box-shadow:0 2px 8px rgba(0,0,0,0.05);
-position:relative;
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 5%;
+  background: var(--bg-white);
+  box-shadow: var(--shadow-soft);
+  position: relative;
+  height: 70px;
 }
 
-/* Logo */
-
-.logo{
-display:flex;
-align-items:center;
-font-size:20px;
-font-weight:600;
-color:#2c3e50;
+.logo {
+  display: flex;
+  align-items: center;
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--secondary-color);
 }
 
-.logo-box{
-width:36px;
-height:36px;
-
-color:rgb(139, 144, 138);
-display:flex;
-align-items:center;
-justify-content:center;
-border-radius:8px;
-margin-right:8px;
+.logo-box {
+  width: 40px;
+  height: 40px;
+  margin-right: 12px;
+  border-radius: 50%;
+  overflow: hidden;
 }
 
-/* Links */
-
-.nav-links{
-list-style:none;
-display:flex;
-gap:35px;
+.nav-links {
+  display: flex;
+  gap: 2rem;
 }
 
-.nav-links a{
-text-decoration:none;
-color:#444;
-font-size:16px;
+.nav-links a {
+  font-weight: 500;
+  color: var(--text-main);
+  position: relative;
 }
 
-/* Buttons */
-
-.nav-buttons{
-display:flex;
-gap:10px;
-}
-.logo .logo-box img{
-    border-radius: 50%;
-}
-.login{
-padding:8px 16px;
-border:1px solid #893737;
-background:rgb(137, 11, 11);
-border-radius:6px;
-cursor:pointer;
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--primary-color);
+  transition: var(--transition-smooth);
 }
 
-.start{
-padding:8px 18px;
-background:linear-gradient(135deg,#f5f6fa,#7e6f9e);
-color:white;
-border:none;
-border-radius:6px;
-cursor:pointer;
+.nav-links a:hover {
+  color: var(--primary-color);
 }
 
-/* Hamburger */
-
-.hamburger{
-display:none;
-font-size:26px;
-cursor:pointer;
+.nav-links a:hover::after {
+  width: 100%;
 }
 
-/* Mobile */
-
-@media (max-width:768px){
-
-.nav-links{
-display:none;
-flex-direction:column;
-position:absolute;
-top:70px;
-left:0;
-width:100%;
-background:white;
-padding:20px;
+.hamburger {
+  display: none;
+  font-size: 1.75rem;
+  cursor: pointer;
+  color: var(--secondary-color);
 }
 
-.nav-links.active{
-display:flex;
-}
+@media (max-width: 768px) {
+  .nav-links {
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    top: 70px;
+    left: 0;
+    width: 100%;
+    background: var(--bg-white);
+    padding: 2rem;
+    box-shadow: var(--shadow-strong);
+    z-index: 1001;
+    gap: 1.5rem;
+    text-align: center;
+  }
 
-.nav-buttons{
-display:none;
-}
+  .nav-links.active {
+    display: flex;
+  }
 
-.hamburger{
-display:block;
-}
+  .hamburger {
+    display: block;
+  }
 
-.navbar{
-padding:18px 25px;
-}
+  .navbar {
+    padding: 0 15px;
+    height: 60px;
+  }
 
+  .nav-links {
+    top: 60px;
+  }
+
+  .logo {
+    font-size: 1.1rem;
+  }
+
+  .logo-box {
+    width: 32px;
+    height: 32px;
+    margin-right: 8px;
+  }
 }

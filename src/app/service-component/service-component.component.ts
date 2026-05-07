@@ -89,22 +89,22 @@ export class ServiceComponentComponent {
     expanded: false
   }
 ];
-   @ViewChild('heroSection') heroSection!: ElementRef;
+    @ViewChild('servicesContainer') servicesContainer!: ElementRef;
 
-ngAfterViewInit() {
+    ngAfterViewInit() {
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('show');
+            }
+          });
+        },
+        { threshold: 0.2 }
+      );
 
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          this.heroSection.nativeElement.classList.add('show');
-        }
-      },
-      {
-        threshold: 0.5
-      }
-    );
-
-    observer.observe(this.heroSection.nativeElement);
-  }
+      const cards = this.servicesContainer.nativeElement.querySelectorAll('.service-card');
+      cards.forEach((card: any) => observer.observe(card));
+    }
 
 }

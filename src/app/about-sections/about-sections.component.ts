@@ -1,9 +1,10 @@
+import { NgOptimizedImage } from '@angular/common';
 import { Component, ElementRef, HostListener, ViewChild } from '@angular/core';
 
 @Component({
   selector: 'app-about-sections',
   standalone: true,
-  imports: [],
+  imports: [NgOptimizedImage],
   templateUrl: './about-sections.component.html',
   styleUrl: './about-sections.component.css'
 })

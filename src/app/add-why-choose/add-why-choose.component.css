@@ -1,110 +1,127 @@
 .why-section {
-  /* background: #0f2a3d; */
-  background: #f5f7fa;
-  padding: 60px 20px;
-  color: rgb(6, 5, 5);
+  background: var(--bg-light);
+  padding: clamp(60px, 8vw, 100px) 20px;
 }
 
-/* LAYOUT */
+.header-container {
+  max-width: 1200px;
+  margin: 0 auto 3rem;
+  text-align: center;
+}
+
+.header-container h2 {
+  color: var(--secondary-color);
+  margin-bottom: 1rem;
+}
+
+.header-container p {
+  color: var(--text-muted);
+  max-width: 700px;
+  margin: 0 auto;
+}
+
 .container {
   max-width: 1200px;
   margin: auto;
   display: flex;
-  gap: 40px;
-  align-items: stretch; /* IMPORTANT */
+  gap: clamp(2rem, 5vw, 4rem);
+  align-items: stretch;
+  height: 500px; /* Fixed height to enable scrolling and matching */
 }
-.card{
-    color: white;
-}
-/* LEFT FIXED */
+
 .left {
   flex: 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+  height: 100%;
 }
 
 .left img {
   width: 100%;
-  height: 250px; /* FIXED SIZE */
-  object-fit: cover;
-  border-radius: 12px;
+  height: 100%;
+  object-fit: contain;
+  border-radius: 0;
+  box-shadow: none;
 }
 
-/* RIGHT SCROLLABLE */
 .right {
   flex: 1;
+  height: 100%;
+  display: flex;
 }
-
 
 .scroll-box {
-  max-height: 400px; /* FIX HEIGHT */
+  flex: 1;
+  height: 100%;
   overflow-y: auto;
+  padding-right: 15px;
   display: flex;
   flex-direction: column;
-  gap: 20px;
-  padding-right: 10px;
+  gap: 1.5rem;
 }
 
-/* CARD */
-.card {
-  display: flex;
-  gap: 15px;
-  background: #173b52;
-  padding: 15px;
+/* Custom Scrollbar */
+.scroll-box::-webkit-scrollbar {
+  width: 6px;
+}
+.scroll-box::-webkit-scrollbar-track {
+  background: #eee;
   border-radius: 10px;
 }
-.icon {
-  min-width: 40px;
-  height: 40px;
-  background: linear-gradient(135deg, #3b82f6, #2563eb); /* blue gradient */
-  color: white;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 10px; /* rounded square */
-  font-size: 18px;
-  font-weight: bold;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+.scroll-box::-webkit-scrollbar-thumb {
+  background: var(--primary-color);
+  border-radius: 10px;
 }
+
+.card {
+  display: flex;
+  gap: 1.25rem;
+  background: var(--secondary-color);
+  padding: 1.5rem;
+  border-radius: 15px;
+  color: var(--bg-white);
+  transition: var(--transition-smooth);
+}
+
+.card:hover {
+  transform: translateX(10px);
+}
+
 .icon {
-  min-width: 42px;
-  height: 42px;
-  background: linear-gradient(135deg, #4facfe, #00c6ff);
+  min-width: 45px;
+  height: 45px;
+  background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
   border-radius: 12px;
   display: flex;
   align-items: center;
   justify-content: center;
-  color: white;
-  font-size: 18px;
-  font-weight: 600;
-  box-shadow: 0 6px 15px rgba(0,0,0,0.25);
+  font-weight: 700;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
 }
 
-@media (max-width: 768px) {
+.card h4 {
+  margin-bottom: 0.5rem;
+  font-size: 1.125rem;
+}
 
+.card p {
+  font-size: 0.938rem;
+  opacity: 0.85;
+}
+
+@media (max-width: 992px) {
   .container {
     flex-direction: column;
-    gap: 30px;
-  }
-
-  /* LEFT */
-  .left {
     text-align: center;
+    height: auto;
   }
-
-  .left img {
-    height: 220px; /* smaller for mobile */
+  
+  .scroll-box {
+    height: 400px; /* Fixed height for mobile scrolling */
+    overflow-y: auto;
+    padding-right: 10px;
+    margin-top: 2rem;
   }
-
-  /* RIGHT */
-  .right {
-    width: 100%;
+  
+  .card:hover {
+    transform: none; /* Disable horizontal hover on mobile */
   }
-
-  /* OPTION 1 (Recommended): Remove scroll on mobile */
-  /* .scroll-box {
-    max-height: none;
-    overflow: visible;
-  } */
 }

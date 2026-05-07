@@ -1,21 +1,21 @@
 <section class="why-section">
-  <div class="container">
+  <div class="header-container">
+    <h2>Why Choose APK Elite Services?</h2>
+    <p>
+      We deliver reliable, efficient, and high-quality services designed
+      to meet your needs with professionalism and precision.
+    </p>
+  </div>
 
+  <div class="container">
     <!-- LEFT -->
     <div class="left">
-      <h1>Why Choose APK Elite Services?</h1>
-      <p>
-        We deliver reliable, efficient, and high-quality services designed
-        to meet your needs with professionalism and precision.
-      </p>
-
-      <img src="assets/images/why-choose.png" alt="team" />
+      <img ngSrc="assets/images/why-choose.png" width="500" height="300" alt="team" />
     </div>
 
     <!-- RIGHT (Scrollable) -->
     <div class="right">
       <div class="scroll-box">
-
         <div class="card" *ngFor="let item of whyList">
           <div class="icon">✔</div>
           <div>
@@ -23,9 +23,7 @@
             <p>{{ item.desc }}</p>
           </div>
         </div>
-
       </div>
     </div>
-
   </div>
 </section>
