@@ -9,7 +9,7 @@ import { Component } from '@angular/core';
   styleUrl: './add-why-choose.component.css'
 })
 export class AddWhyChooseComponent {
-  img="/assets/images/why-choose.webp";
+  img="/assets/images/why-choose.png";
 whyList = [
   { title: "24/7 Support", desc: "We are available round the clock to assist you anytime." },
   { title: "Economical Services", desc: "Affordable pricing without compromising quality." },
