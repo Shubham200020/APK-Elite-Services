@@ -1,42 +1,26 @@
 <div class="bdy">
-    <div class="nav">
-        <app-nav-bar></app-nav-bar>
-    </div>
-    <div>
-        <app-home></app-home>
-    </div>
-    <div>
-        <app-service-component></app-service-component>
-    </div>
-    <div class="why-choose">
-        <app-add-why-choose></app-add-why-choose>
-    </div>
-    <div>
-        <app-add-mission></app-add-mission>
-    </div>
-    <div>
-        <app-about-sections></app-about-sections>
-    </div>
-    <div>
-        <app-add-footer></app-add-footer>
-    </div>
-<!-- FLOATING BUTTONS -->
-<div class="floating-icons">
+  <div class="nav">
+    <app-nav-bar></app-nav-bar>
+  </div>
 
-  <!-- WhatsApp -->
-  <a href="https://wa.me/918830167863" target="_blank" class="icon whatsapp">
-    <i class="fab fa-whatsapp"></i>
-  </a>
+  <main>
+    <router-outlet></router-outlet>
+  </main>
 
-  <!-- Email -->
-  <a href="mailto:info@apkeliteservices.in" class="icon email">
-    <i class="fas fa-envelope"></i>
-  </a>
-<a href="https://wa.me/918830167863" target="_blank" class="whatsapp-box">
-  <i class="fab fa-whatsapp"></i>
-  <span>How can we assist you?</span>
-</a>
+  <app-add-footer></app-add-footer>
 
-</div>
-        
+  <div class="floating-icons">
+    <a href="https://wa.me/918830167863" target="_blank" class="icon whatsapp">
+      <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <a href="mailto:info@apkeliteservices.in" class="icon email">
+      <i class="fas fa-envelope"></i>
+    </a>
+
+    <a href="https://wa.me/918830167863" target="_blank" class="whatsapp-box">
+      <i class="fab fa-whatsapp"></i>
+      <span>How can we assist you?</span>
+    </a>
+  </div>
 </div>

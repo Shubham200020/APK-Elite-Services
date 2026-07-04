@@ -1,24 +1,18 @@
 <nav class="navbar">
-
-  <!-- Logo -->
-  <div class="logo">
+  <a routerLink="/" class="logo" (click)="closeMenu()">
     <div class="logo-box">
-      <img src="assets/images/logo-res.png" alt="Logo" height="100%" >
+      <img src="assets/images/logo-res.png" alt="APK Elite Services logo" height="100%" >
     </div>
     <span>APK Elite Services</span>
-  </div>
+  </a>
 
-  <!-- Menu -->
   <ul class="nav-links" [class.active]="menuOpen">
-    <li><a href="#home" (click)="closeMenu()">HOME</a></li>
-    <li><a href="#services" (click)="closeMenu()">SERVICES</a></li>
-    <li><a href="#heroSection" (click)="closeMenu()">ABOUT</a></li>
-    <li><a href="#mission" (click)="closeMenu()">Mission/Vision</a></li>
+    <li><a routerLink="/" (click)="closeMenu()">HOME</a></li>
+    <li><a routerLink="/services" (click)="closeMenu()">SERVICES</a></li>
+    <li><a href="https://wa.me/918830167863" target="_blank" (click)="closeMenu()">CONTACT</a></li>
   </ul>
 
-  <!-- Hamburger -->
   <div class="hamburger" (click)="toggleMenu()" aria-label="Toggle navigation menu" role="button" tabindex="0" (keydown.enter)="toggleMenu()">
     ☰
   </div>
-
 </nav>

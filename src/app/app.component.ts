@@ -1,36 +1,96 @@
-import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
-import { NavBarComponent } from "./nav-bar/nav-bar.component";
-import { AboutSectionsComponent } from "./about-sections/about-sections.component";
-import { HomeComponent } from "./home/home.component";
-import { ServiceComponentComponent } from "./service-component/service-component.component";
-import { AddWhyChooseComponent } from "./add-why-choose/add-why-choose.component";
-import { AddMissionComponent } from "./add-mission/add-mission.component";
-import { AddFooterComponent } from "./add-footer/add-footer.component";
- import { Title, Meta } from '@angular/platform-browser';
+import { Component, Inject, PLATFORM_ID } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
+import { NavigationEnd, Router, RouterOutlet } from '@angular/router';
+import { NavBarComponent } from './nav-bar/nav-bar.component';
+import { AddFooterComponent } from './add-footer/add-footer.component';
+import { Title, Meta } from '@angular/platform-browser';
+import { filter } from 'rxjs/operators';
+
+declare global {
+  interface Window {
+    gtag?: (...args: unknown[]) => void;
+    __APK_TRACKING_ENDPOINT__?: string;
+  }
+}
+
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, NavBarComponent, AboutSectionsComponent, HomeComponent, ServiceComponentComponent, AddWhyChooseComponent, AddMissionComponent, AddFooterComponent],
+  imports: [RouterOutlet, NavBarComponent, AddFooterComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
 export class AppComponent {
-  //title = 'APK Elite Services';
- 
+  constructor(
+    private title: Title,
+    private meta: Meta,
+    private router: Router,
+    @Inject(PLATFORM_ID) private platformId: Object
+  ) {}
 
-constructor(private title: Title, private meta: Meta) {}
+  ngOnInit() {
+    this.title.setTitle('APK Elite Services | Professional Cleaning Services in Pune');
+    this.meta.updateTag({
+      name: 'description',
+      content: 'Professional cleaning and facility management services in Pune by APK Elite Services. We offer deep cleaning, sofa cleaning, office cleaning, pest control and more.'
+    });
+    this.meta.updateTag({
+      name: 'keywords',
+      content: 'APK Elite Services, deep cleaning Pune, office cleaning Pune, sofa cleaning Pune, pest control Pune, tank cleaning Pune, facility management Pune'
+    });
+    this.meta.updateTag({ property: 'og:type', content: 'website' });
+    this.meta.updateTag({ property: 'og:site_name', content: 'APK Elite Services' });
+    this.meta.updateTag({ property: 'og:image', content: 'https://www.apkeliteservices.in/assets/images/logo-res.png' });
 
-ngOnInit() {
-  this.title.setTitle('Deep Cleaning Services in Pune | Home, Sofa & Office Cleaning - APK Elite Services|Affordable Deep Cleaning Services in Pune');
+    if (!isPlatformBrowser(this.platformId)) {
+      return;
+    }
 
-  this.meta.updateTag({
-    name: 'description',
-    content: 'Professional deep cleaning services in Pune by APK Elite Services. We offer home cleaning, sofa cleaning, bathroom and office cleaning at affordable prices. Book now!'
-  });
-  this.meta.updateTag({
-  name: 'keywords',
-  content: 'APK Elite Services,Elite Services,affordable deep cleaning services in Pune, best home cleaning services in Pune, professional cleaning services in Pune, sofa cleaning services in Pune, bathroom deep cleaning Pune, office cleaning company Pune, carpet cleaning Pune, mattress cleaning Pune, water tank cleaning Pune, move in move out cleaning Pune, same day cleaning Pune'
-});
-}
+    this.trackPageView(window.location.pathname + window.location.search);
+
+    this.router.events
+      .pipe(filter((event): event is NavigationEnd => event instanceof NavigationEnd))
+      .subscribe((event) => {
+        this.trackPageView(event.urlAfterRedirects);
+      });
+  }
+
+  private trackPageView(path: string) {
+    const payload = {
+      path,
+      title: document.title,
+      referrer: document.referrer || '',
+      timestamp: new Date().toISOString(),
+      userAgent: navigator.userAgent
+    };
+
+    if (typeof window.gtag === 'function') {
+      window.gtag('event', 'page_view', {
+        page_path: path,
+        page_title: document.title
+      });
+    }
+
+    if (window.__APK_TRACKING_ENDPOINT__) {
+      navigator.sendBeacon(window.__APK_TRACKING_ENDPOINT__, JSON.stringify(payload));
+      return;
+    }
+
+    const storedEvents = this.getStoredEvents();
+    storedEvents.push(payload);
+    localStorage.setItem('apk-traffic-events', JSON.stringify(storedEvents.slice(-20)));
+  }
+
+  private getStoredEvents(): Array<Record<string, string>> {
+    const storedValue = localStorage.getItem('apk-traffic-events');
+    if (!storedValue) {
+      return [];
+    }
+
+    try {
+      return JSON.parse(storedValue) as Array<Record<string, string>>;
+    } catch {
+      return [];
+    }
+  }
 }
