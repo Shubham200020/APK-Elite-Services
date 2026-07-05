@@ -7,7 +7,8 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "serve:ssr:my-website": "node dist/my-website/server/server.mjs"
+    "serve:ssr:my-website": "node dist/my-website/server/server.mjs",
+    "images:webp": "node scripts/convert-images-to-webp.js"
   },
   "private": true,
   "dependencies": {
