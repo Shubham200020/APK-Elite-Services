@@ -1,0 +1,17 @@
+<section class="faq-section">
+  <div class="faq-container">
+    <p class="eyebrow">Got Questions?</p>
+    <h2>Frequently Asked Questions</h2>
+    <div class="faq-list">
+      <div class="faq-item" *ngFor="let faq of faqs; let i = index" [class.open]="faq.isOpen">
+        <button class="faq-question" (click)="toggleFaq(i)">
+          <span>{{ faq.question }}</span>
+          <i class="fas" [ngClass]="faq.isOpen ? 'fa-chevron-up' : 'fa-chevron-down'"></i>
+        </button>
+        <div class="faq-answer" *ngIf="faq.isOpen">
+          <p>{{ faq.answer }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
