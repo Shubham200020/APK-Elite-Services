@@ -2,12 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { Meta, Title } from '@angular/platform-browser';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
-import { FaqComponent } from '../faq/faq.component';
 
 @Component({
   selector: 'app-about-page',
   standalone: true,
-  imports: [CommonModule, RouterLink, FaqComponent],
+  imports: [CommonModule, RouterLink],
   template: `
     <section class="page-section">
       <div class="page-hero">
@@ -63,8 +62,6 @@ import { FaqComponent } from '../faq/faq.component';
         <h2>Our 100% Satisfaction Guarantee</h2>
         <p>Your satisfaction is our ultimate metric. We promise punctuality, professional conduct, and a spotless finish. If you aren't completely satisfied with the results, our team will make it right.</p>
       </div>
-
-      <app-faq></app-faq>
     </section>
   `,
   styles: [
