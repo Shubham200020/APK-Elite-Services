@@ -8,8 +8,9 @@
 
   <ul class="nav-links" [class.active]="menuOpen">
     <li><a routerLink="/" (click)="closeMenu()">HOME</a></li>
+    <li><a routerLink="/about" (click)="closeMenu()">ABOUT</a></li>
     <li><a routerLink="/services" (click)="closeMenu()">SERVICES</a></li>
-    <li><a href="https://wa.me/918830167863" target="_blank" (click)="closeMenu()">CONTACT</a></li>
+    <li><a routerLink="/contact" (click)="closeMenu()">CONTACT</a></li>
   </ul>
 
   <div class="hamburger" (click)="toggleMenu()" aria-label="Toggle navigation menu" role="button" tabindex="0" (keydown.enter)="toggleMenu()">
