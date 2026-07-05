@@ -39,9 +39,12 @@
     </p>
 
     <!-- BUTTON -->
-    <button class="btn" (click)="toggle(service)">
-      {{ service.expanded ? 'Show Less' : 'Learn More' }}
-    </button>
+    <div class="actions">
+      <button class="btn" (click)="toggle(service)">
+        {{ service.expanded ? 'Show Less' : 'Learn More' }}
+      </button>
+      <a class="btn secondary" [routerLink]="['/services', service.slug]">View Service</a>
+    </div>
   </div>
 
 </div>
