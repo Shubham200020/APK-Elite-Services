@@ -1,5 +1,5 @@
-import { CommonModule, NgOptimizedImage } from '@angular/common';
-import { Component, ElementRef, ViewChild } from '@angular/core';
+import { CommonModule, NgOptimizedImage, isPlatformBrowser } from '@angular/common';
+import { Component, ElementRef, ViewChild, Inject, PLATFORM_ID } from '@angular/core';
 import { RouterLink } from '@angular/router';
 
 @Component({
@@ -104,20 +104,24 @@ export class ServiceComponentComponent {
 ];
     @ViewChild('servicesContainer') servicesContainer!: ElementRef;
 
-    ngAfterViewInit() {
-      const observer = new IntersectionObserver(
-        (entries) => {
-          entries.forEach(entry => {
-            if (entry.isIntersecting) {
-              entry.target.classList.add('show');
-            }
-          });
-        },
-        { threshold: 0.2 }
-      );
+    constructor(@Inject(PLATFORM_ID) private platformId: Object) {}
 
-      const cards = this.servicesContainer.nativeElement.querySelectorAll('.service-card');
-      cards.forEach((card: any) => observer.observe(card));
+    ngAfterViewInit() {
+      if (isPlatformBrowser(this.platformId)) {
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach(entry => {
+              if (entry.isIntersecting) {
+                entry.target.classList.add('show');
+              }
+            });
+          },
+          { threshold: 0.1 }
+        );
+
+        const serviceCards = this.servicesContainer?.nativeElement.querySelectorAll('.service-card');
+        serviceCards?.forEach((card: Element) => observer.observe(card));
+      }
     }
 
 }

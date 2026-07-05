@@ -1,0 +1,12 @@
+/
+/about
+/contact
+/services
+/services/deep-cleaning
+/services/sofa-cleaning
+/services/water-tank-cleaning
+/services/office-cleaning
+/services/pest-control
+/services/garden-cleaning
+/services/post-construction-cleaning
+/services/facade-cleaning
