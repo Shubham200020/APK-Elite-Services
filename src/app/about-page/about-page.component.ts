@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Meta, Title } from '@angular/platform-browser';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
+import { SeoService } from '../seo.service';
 
 @Component({
   selector: 'app-about-page',
@@ -96,11 +96,13 @@ import { RouterLink } from '@angular/router';
   ]
 })
 export class AboutPageComponent implements OnInit {
-  constructor(private title: Title, private meta: Meta) {}
+  constructor(private seo: SeoService) {}
 
   ngOnInit(): void {
-    this.title.setTitle('About APK Elite Services | Premium Cleaning in Pune');
-    this.meta.updateTag({ name: 'description', content: 'Discover APK Elite Services. We provide 100% in-house, eco-friendly deep cleaning, pest control, and facility management for Pune residential and commercial clients.' });
-    this.meta.updateTag({ name: 'keywords', content: 'about APK Elite Services, premium cleaning Pune, facility services Pune, eco-friendly cleaning Pune' });
+    this.seo.generateTags({
+      title: 'About APK Elite Services | Premium Cleaning in Pune',
+      description: 'Discover APK Elite Services. We provide 100% in-house, eco-friendly deep cleaning, pest control, and facility management for Pune residential and commercial clients.',
+      path: '/about'
+    });
   }
 }

@@ -1,13 +1,15 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
-import { Meta, Title } from '@angular/platform-browser';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { ActivatedRoute, RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import { getServiceBySlug, SERVICE_CATALOG } from '../shared/service-catalog';
+import { SeoService } from '../seo.service';
+import { getServiceBySlug, ServiceItem } from '../shared/service-catalog';
+
+const BASE_URL = 'https://www.apkeliteservices.in';
 
 @Component({
   selector: 'app-service-page',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, RouterLink],
   template: `
     <section class="service-page" *ngIf="service; else notFound">
       <div class="service-hero">
@@ -18,7 +20,7 @@ import { getServiceBySlug, SERVICE_CATALOG } from '../shared/service-catalog';
           <a class="cta" href="https://wa.me/918830167863" target="_blank">Book This Service</a>
         </div>
         <div class="service-image">
-          <img [src]="service.imageUrl" [alt]="service.title" />
+          <img [src]="service.imageUrl" [alt]="service.title" width="600" height="400" />
         </div>
       </div>
 
@@ -36,6 +38,7 @@ import { getServiceBySlug, SERVICE_CATALOG } from '../shared/service-catalog';
         <h1>Service not found</h1>
         <p>The requested service page does not exist.</p>
         <a routerLink="/" class="cta">Go to home</a>
+        <a routerLink="/services" class="cta">View all services</a>
       </section>
     </ng-template>
   `,
@@ -48,36 +51,66 @@ import { getServiceBySlug, SERVICE_CATALOG } from '../shared/service-catalog';
     `.summary { font-size: 1.05rem; color: #475569; margin-bottom: 1rem; }`,
     `.cta, .back-link { display: inline-block; margin-right: 0.75rem; padding: 0.8rem 1.1rem; border-radius: 999px; background: #1e73be; color: white; text-decoration: none; font-weight: 600; }`,
     `.back-link { background: #0f172a; }`,
-    `.service-image img { width: 100%; border-radius: 18px; object-fit: cover; }`,
+    `.service-image img { width: 100%; height: auto; border-radius: 18px; object-fit: cover; }`,
     `.service-body { margin-top: 1.5rem; background: white; padding: 2rem; border-radius: 24px; box-shadow: 0 18px 40px rgba(0,0,0,0.06); color: #334155; line-height: 1.8; }`,
     `.service-links { margin-top: 1rem; }`,
     `.not-found { text-align: center; }`,
     '@media (max-width: 768px) { .service-hero { grid-template-columns: 1fr; } }'
   ]
 })
-export class ServicePageComponent implements OnInit {
-  service: any;
+export class ServicePageComponent implements OnInit, OnDestroy {
+  service?: ServiceItem;
 
-  constructor(private route: ActivatedRoute, private router: Router, private title: Title, private meta: Meta) {}
+  constructor(private route: ActivatedRoute, private seo: SeoService) {}
 
   ngOnInit(): void {
     this.route.paramMap.subscribe((params) => {
       const slug = params.get('slug');
       const matchedService = getServiceBySlug(slug);
       if (!matchedService) {
-        this.router.navigate(['/']);
+        this.service = undefined;
+        this.seo.generateTags({
+          title: 'Service Not Found | APK Elite Services',
+          description: 'The requested service page does not exist. Browse all cleaning and facility services by APK Elite Services in Pune.',
+          path: '/services'
+        });
         return;
       }
 
       this.service = matchedService;
-      this.title.setTitle(matchedService.metaTitle);
-      this.meta.updateTag({ name: 'description', content: matchedService.metaDescription });
-      this.meta.updateTag({ name: 'keywords', content: matchedService.keywords });
-      this.meta.updateTag({ property: 'og:title', content: matchedService.metaTitle });
-      this.meta.updateTag({ property: 'og:description', content: matchedService.metaDescription });
-      this.meta.updateTag({ property: 'og:url', content: `https://www.apkeliteservices.in/services/${matchedService.slug}` });
-      this.meta.updateTag({ property: 'twitter:title', content: matchedService.metaTitle });
-      this.meta.updateTag({ property: 'twitter:description', content: matchedService.metaDescription });
+      const pagePath = `/services/${matchedService.slug}`;
+      this.seo.generateTags({
+        title: matchedService.metaTitle,
+        description: matchedService.metaDescription,
+        path: pagePath,
+        image: `${BASE_URL}${matchedService.imageUrl}`
+      });
+
+      this.seo.setJsonLd('service-jsonld', {
+        '@context': 'https://schema.org',
+        '@type': 'Service',
+        name: matchedService.title,
+        description: matchedService.metaDescription,
+        url: `${BASE_URL}${pagePath}`,
+        image: `${BASE_URL}${matchedService.imageUrl}`,
+        areaServed: { '@type': 'City', name: 'Pune' },
+        provider: { '@id': `${BASE_URL}/#business` }
+      });
+
+      this.seo.setJsonLd('breadcrumb-jsonld', {
+        '@context': 'https://schema.org',
+        '@type': 'BreadcrumbList',
+        itemListElement: [
+          { '@type': 'ListItem', position: 1, name: 'Home', item: `${BASE_URL}/` },
+          { '@type': 'ListItem', position: 2, name: 'Services', item: `${BASE_URL}/services` },
+          { '@type': 'ListItem', position: 3, name: matchedService.title, item: `${BASE_URL}${pagePath}` }
+        ]
+      });
     });
+  }
+
+  ngOnDestroy(): void {
+    this.seo.removeJsonLd('service-jsonld');
+    this.seo.removeJsonLd('breadcrumb-jsonld');
   }
 }
