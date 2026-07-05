@@ -4,12 +4,16 @@ import { ServicesOverviewComponent } from './services-overview/services-overview
 import { ServicePageComponent } from './service-page/service-page.component';
 import { AboutPageComponent } from './about-page/about-page.component';
 import { ContactPageComponent } from './contact-page/contact-page.component';
+import { NotFoundComponent } from './not-found/not-found.component';
 
+// Titles and meta tags are owned by each component via SeoService,
+// so routes deliberately carry no `title` (the router would override
+// the component's title after navigation).
 export const routes: Routes = [
-  { path: '', component: HomeComponent, title: 'APK Elite Services | Professional Cleaning Services in Pune' },
-  { path: 'about', component: AboutPageComponent, title: 'About APK Elite Services | Cleaning Services in Pune' },
-  { path: 'contact', component: ContactPageComponent, title: 'Contact APK Elite Services | Pune Cleaning Services' },
-  { path: 'services', component: ServicesOverviewComponent, title: 'Our Services | APK Elite Services' },
+  { path: '', component: HomeComponent },
+  { path: 'about', component: AboutPageComponent },
+  { path: 'contact', component: ContactPageComponent },
+  { path: 'services', component: ServicesOverviewComponent },
   { path: 'services/:slug', component: ServicePageComponent },
-  { path: '**', redirectTo: '' }
+  { path: '**', component: NotFoundComponent }
 ];

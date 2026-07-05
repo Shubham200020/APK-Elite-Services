@@ -3,7 +3,6 @@ import { isPlatformBrowser } from '@angular/common';
 import { NavigationEnd, Router, RouterOutlet } from '@angular/router';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { AddFooterComponent } from './add-footer/add-footer.component';
-import { Title, Meta } from '@angular/platform-browser';
 import { filter } from 'rxjs/operators';
 
 declare global {
@@ -22,26 +21,13 @@ declare global {
 })
 export class AppComponent {
   constructor(
-    private title: Title,
-    private meta: Meta,
     private router: Router,
     @Inject(PLATFORM_ID) private platformId: Object
   ) {}
 
   ngOnInit() {
-    this.title.setTitle('APK Elite Services | Professional Cleaning Services in Pune');
-    this.meta.updateTag({
-      name: 'description',
-      content: 'Professional cleaning and facility management services in Pune by APK Elite Services. We offer deep cleaning, sofa cleaning, office cleaning, pest control and more.'
-    });
-    this.meta.updateTag({
-      name: 'keywords',
-      content: 'APK Elite Services, deep cleaning Pune, office cleaning Pune, sofa cleaning Pune, pest control Pune, tank cleaning Pune, facility management Pune'
-    });
-    this.meta.updateTag({ property: 'og:type', content: 'website' });
-    this.meta.updateTag({ property: 'og:site_name', content: 'APK Elite Services' });
-    this.meta.updateTag({ property: 'og:image', content: 'https://www.apkeliteservices.in/assets/images/logo-res.png' });
-
+    // Titles, descriptions, canonicals and social tags are owned by each
+    // routed page component via SeoService; static defaults live in index.html.
     if (!isPlatformBrowser(this.platformId)) {
       return;
     }

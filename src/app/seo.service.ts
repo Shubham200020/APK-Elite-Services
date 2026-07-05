@@ -1,27 +1,85 @@
-import { Injectable } from '@angular/core';
+import { Inject, Injectable } from '@angular/core';
+import { DOCUMENT } from '@angular/common';
 import { Title, Meta } from '@angular/platform-browser';
+
+const BASE_URL = 'https://www.apkeliteservices.in';
+const DEFAULT_IMAGE = `${BASE_URL}/assets/images/logo-res.png`;
+
+export interface SeoConfig {
+  title: string;
+  description: string;
+  /** Route path starting with '/', e.g. '/services/deep-cleaning'. Use '/' for home. */
+  path: string;
+  image?: string;
+}
 
 @Injectable({
   providedIn: 'root'
 })
 export class SeoService {
-  constructor(private titleService: Title, private metaService: Meta) {}
+  constructor(
+    private titleService: Title,
+    private metaService: Meta,
+    @Inject(DOCUMENT) private document: Document
+  ) {}
 
-  generateTags(config: { title: string; description: string; keywords: string; slug: string }) {
-    // 1. Set Page Title
+  generateTags(config: SeoConfig) {
+    const url = this.absoluteUrl(config.path);
+    const image = config.image ?? DEFAULT_IMAGE;
+
     this.titleService.setTitle(config.title);
 
-    // 2. Set Meta Description & Keywords
     this.metaService.updateTag({ name: 'description', content: config.description });
-    this.metaService.updateTag({ name: 'keywords', content: config.keywords });
-    
-    // 3. Open Graph (Facebook / LinkedIn)
+
+    // Open Graph (Facebook / LinkedIn / WhatsApp)
     this.metaService.updateTag({ property: 'og:title', content: config.title });
     this.metaService.updateTag({ property: 'og:description', content: config.description });
-    this.metaService.updateTag({ property: 'og:url', content: `https://www.apkeliteservices.in/${config.slug}` });
-    
-    // 4. Twitter Cards
+    this.metaService.updateTag({ property: 'og:url', content: url });
+    this.metaService.updateTag({ property: 'og:image', content: image });
+
+    // Twitter Cards
     this.metaService.updateTag({ name: 'twitter:title', content: config.title });
     this.metaService.updateTag({ name: 'twitter:description', content: config.description });
+    this.metaService.updateTag({ name: 'twitter:image', content: image });
+
+    // Canonical must match the page URL, otherwise Google folds
+    // every page into the homepage and never shows sitelinks.
+    this.setCanonical(url);
+  }
+
+  /** Insert or replace a JSON-LD block identified by element id. */
+  setJsonLd(id: string, data: object) {
+    const json = JSON.stringify(data);
+    const existing = this.document.getElementById(id);
+    if (existing) {
+      existing.textContent = json;
+      return;
+    }
+    const script = this.document.createElement('script');
+    script.type = 'application/ld+json';
+    script.id = id;
+    script.textContent = json;
+    this.document.head.appendChild(script);
+  }
+
+  removeJsonLd(id: string) {
+    this.document.getElementById(id)?.remove();
+  }
+
+  private setCanonical(url: string) {
+    let link = this.document.querySelector<HTMLLinkElement>('link[rel="canonical"]');
+    if (!link) {
+      link = this.document.createElement('link');
+      link.setAttribute('rel', 'canonical');
+      this.document.head.appendChild(link);
+    }
+    link.setAttribute('href', url);
+  }
+
+  private absoluteUrl(path: string): string {
+    if (!path || path === '/') {
+      return `${BASE_URL}/`;
+    }
+    return `${BASE_URL}${path.startsWith('/') ? path : '/' + path}`;
   }
 }

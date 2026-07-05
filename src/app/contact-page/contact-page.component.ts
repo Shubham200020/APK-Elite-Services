@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Meta, Title } from '@angular/platform-browser';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
+import { SeoService } from '../seo.service';
 
 @Component({
   selector: 'app-contact-page',
@@ -55,11 +55,13 @@ import { RouterLink } from '@angular/router';
   ]
 })
 export class ContactPageComponent implements OnInit {
-  constructor(private title: Title, private meta: Meta) {}
+  constructor(private seo: SeoService) {}
 
   ngOnInit(): void {
-    this.title.setTitle('Contact APK Elite Services | Pune Cleaning Services');
-    this.meta.updateTag({ name: 'description', content: 'Contact APK Elite Services for professional cleaning, sanitization, and facility services across Pune.' });
-    this.meta.updateTag({ name: 'keywords', content: 'contact APK Elite Services, cleaning services Pune contact, sofa cleaning Pune contact' });
+    this.seo.generateTags({
+      title: 'Contact APK Elite Services | Pune Cleaning Services',
+      description: 'Contact APK Elite Services for professional cleaning, sanitization, and facility services across Pune.',
+      path: '/contact'
+    });
   }
 }

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Meta, Title } from '@angular/platform-browser';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
+import { SeoService } from '../seo.service';
 import { SERVICE_CATALOG } from '../shared/service-catalog';
 
 @Component({
@@ -17,7 +17,7 @@ import { SERVICE_CATALOG } from '../shared/service-catalog';
       </div>
       <div class="service-grid">
         <article class="service-card" *ngFor="let service of services">
-          <img [src]="service.imageUrl" [alt]="service.title" />
+          <img [src]="service.imageUrl" [alt]="service.title" width="400" height="190" loading="lazy" decoding="async" />
           <div class="card-body">
             <h2>{{ service.title }}</h2>
             <p>{{ service.shortDescription }}</p>
@@ -45,11 +45,13 @@ import { SERVICE_CATALOG } from '../shared/service-catalog';
 export class ServicesOverviewComponent implements OnInit {
   services = SERVICE_CATALOG;
 
-  constructor(private title: Title, private meta: Meta) {}
+  constructor(private seo: SeoService) {}
 
   ngOnInit(): void {
-    this.title.setTitle('Our Services | APK Elite Services');
-    this.meta.updateTag({ name: 'description', content: 'Browse all professional cleaning and facility services offered by APK Elite Services in Pune.' });
-    this.meta.updateTag({ name: 'keywords', content: 'APK Elite Services services, cleaning services Pune, facility services Pune' });
+    this.seo.generateTags({
+      title: 'Our Services | APK Elite Services',
+      description: 'Browse all professional cleaning and facility services offered by APK Elite Services in Pune.',
+      path: '/services'
+    });
   }
 }
