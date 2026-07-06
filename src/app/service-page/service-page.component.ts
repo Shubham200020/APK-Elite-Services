@@ -51,7 +51,7 @@ const BASE_URL = 'https://www.apkeliteservices.in';
     `.summary { font-size: 1.05rem; color: #475569; margin-bottom: 1rem; }`,
     `.cta, .back-link { display: inline-block; margin-right: 0.75rem; padding: 0.8rem 1.1rem; border-radius: 999px; background: #1e73be; color: white; text-decoration: none; font-weight: 600; }`,
     `.back-link { background: #0f172a; }`,
-    `.service-image img { width: 100%; height: auto; border-radius: 18px; object-fit: cover; }`,
+    `.service-image img { width: 100%; height: auto; aspect-ratio: 3 / 2; border-radius: 18px; object-fit: cover; }`,
     `.service-body { margin-top: 1.5rem; background: white; padding: 2rem; border-radius: 24px; box-shadow: 0 18px 40px rgba(0,0,0,0.06); color: #334155; line-height: 1.8; }`,
     `.service-links { margin-top: 1rem; }`,
     `.not-found { text-align: center; }`,
