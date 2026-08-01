@@ -3,11 +3,19 @@
 Updated: August 2, 2026
 
 ## 🟢 Completed in Code (new-web branch)
+- [x] **🎆 Diwali Deep Cleaning Landing Page (`/diwali-deep-cleaning-pune`)** — Published with 15% festival offer badge, checklist & calculator.
+- [x] **📍 Locality SEO Landing Pages** — Built for key high-income Pune areas:
+  - `/services/deep-cleaning-baner`
+  - `/services/deep-cleaning-wakad`
+  - `/services/deep-cleaning-kharadi`
+  - `/services/deep-cleaning-hinjewadi`
+- [x] **🧮 Interactive Rate Estimator / Quote Calculator (`QuoteCalculatorComponent`)** — Built with BHK selector, occupancy toggle, add-ons & pre-filled WhatsApp booking.
+- [x] **📸 Job Gallery Showcase (`JobShowcaseComponent`)** — Built to feature real project transformations and location pins.
 - [x] **Redesigned Contact Form & WhatsApp Integration** — 5-field inquiry form with clean corporate styling and instant WhatsApp backup.
 - [x] **Added "Starting from ₹X" Prices** across all 12 services in `service-catalog.ts` & `service-page.component.ts`.
 - [x] **Umami Event Tracking** added on all global floating & sticky WhatsApp/Call CTAs.
 - [x] **Privacy Policy Page** added (`/privacy-policy`) for Google Ads & Meta Ads compliance.
-- [x] **Prerendered 17 Static Routes** via SSG (`npm run build` verified).
+- [x] **Prerendered 22 Static Routes** via SSG (`npm run build` verified).
 - [x] **Redesigned UI** to remove all raw emojis and replace with clean SVG icons.
 
 ---
@@ -28,11 +36,10 @@ Updated: August 2, 2026
 
 ### 2. 🌐 Deploy & Google Search Console
 - [ ] **Deploy `new-web` branch** to production hosting (`apkeliteservices.in`).
-- [ ] **Submit Sitemap to Google Search Console:** Go to `search.google.com/search-console`, submit `https://www.apkeliteservices.in/sitemap.xml`, and click **Request Indexing** on home, about, services, contact.
+- [ ] **Submit Sitemap to Google Search Console:** Go to `search.google.com/search-console`, submit `https://www.apkeliteservices.in/sitemap.xml` (lists all 22 URLs), and click **Request Indexing** on home, about, services, contact, diwali page.
 
 ---
 
-### 3. 📣 Next Phase Marketing & Locality SEO
-- [ ] **Diwali Deep Cleaning Landing Page** (`/diwali-deep-cleaning-pune`).
-- [ ] **Locality Landing Pages** (Baner, Wakad, Kharadi, Hinjewadi, PCMC).
+### 3. 📣 Next Phase Marketing & Lead Generation
 - [ ] **Collect Google Reviews:** Send review link on WhatsApp after every service (aim for 50+ reviews).
+- [ ] **Free Directory Listings:** Justdial, Sulekha, IndiaMART profiles.
