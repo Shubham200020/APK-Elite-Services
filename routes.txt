@@ -1,6 +1,7 @@
 /
 /about
 /contact
+/privacy-policy
 /services
 /services/deep-cleaning
 /services/facade-cleaning
