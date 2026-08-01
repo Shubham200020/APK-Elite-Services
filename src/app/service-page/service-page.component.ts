@@ -17,14 +17,14 @@ const WA_NUMBER = '918830167863';
       <!-- Hero -->
       <div class="service-hero">
         <div class="service-content">
-          <p class="eyebrow">APK Elite Services · Pune</p>
+          <span class="eyebrow">APK Elite Services · Pune</span>
           <h1>{{ service.title }}</h1>
           <p class="summary">{{ service.shortDescription }}</p>
 
-          <!-- Pricing badge -->
-          <div class="price-badge">
-            <span class="price-icon">💰</span>
-            <span>{{ service.startingPrice }}</span>
+          <!-- Pricing tag -->
+          <div class="price-tag">
+            <span class="price-label">Pricing:</span>
+            <span class="price-val">{{ service.startingPrice }}</span>
           </div>
 
           <!-- CTA row -->
@@ -35,12 +35,12 @@ const WA_NUMBER = '918830167863';
                rel="noopener"
                data-umami-event="whatsapp-service-click"
                [attr.data-umami-event-service]="service.slug">
-              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.125.555 4.122 1.528 5.855L0 24l6.335-1.502A11.95 11.95 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.885 0-3.655-.52-5.17-1.426l-.37-.22-3.76.892.946-3.653-.24-.383A9.96 9.96 0 0 1 2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
-              Get Free Quote on WhatsApp
+              <svg viewBox="0 0 24 24" width="18" height="18"><path fill="currentColor" d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path fill="currentColor" d="M12 0C5.373 0 0 5.373 0 12c0 2.125.555 4.122 1.528 5.855L0 24l6.335-1.502A11.95 11.95 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.885 0-3.655-.52-5.17-1.426l-.37-.22-3.76.892.946-3.653-.24-.383A9.96 9.96 0 0 1 2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
+              <span>Get Quote on WhatsApp</span>
             </a>
             <a class="cta-call" href="tel:+918830167863" data-umami-event="call-service-click" [attr.data-umami-event-service]="service.slug">
-              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" viewBox="0 0 24 24"><path d="M6.62 10.79a15.053 15.053 0 0 0 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
-              Call Now
+              <svg viewBox="0 0 24 24" width="16" height="16"><path fill="currentColor" d="M6.62 10.79a15.053 15.053 0 0 0 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+              <span>Call Now</span>
             </a>
           </div>
         </div>
@@ -49,38 +49,48 @@ const WA_NUMBER = '918830167863';
         </div>
       </div>
 
-      <!-- Trust Badges -->
+      <!-- Trust Features -->
       <div class="trust-row">
-        <div class="badge"><span>✅</span><span>100% In-House Staff</span></div>
-        <div class="badge"><span>🌱</span><span>Eco-Friendly Chemicals</span></div>
-        <div class="badge"><span>🛡️</span><span>Fully Insured</span></div>
-        <div class="badge"><span>💯</span><span>Satisfaction Guaranteed</span></div>
+        <div class="pill">
+          <svg viewBox="0 0 24 24" width="16" height="16"><path fill="none" stroke="#16a34a" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+          <span>Trained In-House Staff</span>
+        </div>
+        <div class="pill">
+          <svg viewBox="0 0 24 24" width="16" height="16"><path fill="none" stroke="#16a34a" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+          <span>Eco-Friendly Solutions</span>
+        </div>
+        <div class="pill">
+          <svg viewBox="0 0 24 24" width="16" height="16"><path fill="none" stroke="#16a34a" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+          <span>Insured Service Guarantee</span>
+        </div>
       </div>
 
-      <!-- Description -->
+      <!-- Service Details -->
       <div class="service-body">
-        <h2>About This Service</h2>
+        <h2>Service Overview</h2>
         <p>{{ service.description }}</p>
 
-        <!-- Inline CTA -->
+        <!-- Inline CTA box -->
         <div class="inline-cta">
-          <p><strong>Ready to book?</strong> Contact us now for a fast, no-obligation quote.</p>
-          <div class="cta-row">
+          <div class="cta-text">
+            <h3>Need a customized quote for your property?</h3>
+            <p>Our team is available 7 days a week to answer queries and provide instant estimates.</p>
+          </div>
+          <div class="cta-btns">
             <a class="cta-whatsapp"
                [href]="'https://wa.me/' + waNumber + '?text=' + service.whatsappMessage"
                target="_blank" rel="noopener"
                data-umami-event="whatsapp-service-body-click"
                [attr.data-umami-event-service]="service.slug">
-              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.125.555 4.122 1.528 5.855L0 24l6.335-1.502A11.95 11.95 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.885 0-3.655-.52-5.17-1.426l-.37-.22-3.76.892.946-3.653-.24-.383A9.96 9.96 0 0 1 2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
-              WhatsApp for Quote
+              <span>WhatsApp Us</span>
             </a>
-            <a routerLink="/contact" class="cta-contact" data-umami-event="contact-form-click" [attr.data-umami-event-service]="service.slug">Request Callback</a>
+            <a routerLink="/contact" class="cta-contact" data-umami-event="contact-form-click" [attr.data-umami-event-service]="service.slug">Submit Online Form</a>
           </div>
         </div>
 
         <div class="service-links">
-          <a routerLink="/" class="back-link">← Home</a>
-          <a routerLink="/services" class="back-link">All Services</a>
+          <a routerLink="/" class="back-link">← Return to Home</a>
+          <a routerLink="/services" class="back-link">Browse All Services</a>
         </div>
       </div>
     </section>
@@ -89,49 +99,55 @@ const WA_NUMBER = '918830167863';
       <section class="service-page not-found">
         <h1>Service not found</h1>
         <p>The requested service page does not exist.</p>
-        <a routerLink="/" class="cta-whatsapp">Go to home</a>
-        <a routerLink="/services" class="cta-contact">View all services</a>
+        <a routerLink="/services" class="cta-contact">View All Services</a>
       </section>
     </ng-template>
   `,
   styles: [
-    `:host { display: block; padding: 2rem 1.25rem 4rem; background: linear-gradient(180deg, #f0f6ff 0%, #eef4fb 100%); min-height: 70vh; }`,
-    `.service-page { max-width: 1100px; margin: 0 auto; }`,
+    `:host { display: block; padding: 2.5rem 1.25rem 4rem; background: #f8fafc; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; color: #1e293b; }`,
+    `.service-page { max-width: 1140px; margin: 0 auto; }`,
 
     /* Hero */
-    `.service-hero { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 2rem; align-items: center; background: white; border-radius: 24px; padding: 2.5rem; box-shadow: 0 18px 40px rgba(0,0,0,0.07); }`,
-    `.eyebrow { text-transform: uppercase; letter-spacing: 0.18em; color: #1e73be; font-weight: 700; font-size: 0.78rem; margin-bottom: 0.5rem; }`,
-    `h1 { font-size: 2rem; margin: 0 0 0.75rem; color: #0f172a; font-weight: 800; line-height: 1.2; }`,
-    `.summary { font-size: 1.05rem; color: #475569; margin-bottom: 1.25rem; line-height: 1.65; }`,
+    `.service-hero { display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 2rem; align-items: center; background: white; border-radius: 16px; padding: 2.25rem 2.5rem; border: 1px solid #e2e8f0; box-shadow: 0 4px 20px rgba(0,0,0,0.03); }`,
+    `.eyebrow { display: inline-block; font-size: 0.78rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: #0284c7; background: #f0f9ff; border: 1px solid #bae6fd; padding: 0.3rem 0.75rem; border-radius: 6px; margin-bottom: 0.75rem; }`,
+    `h1 { font-size: 2.1rem; color: #0f172a; margin: 0 0 0.75rem; font-weight: 700; letter-spacing: -0.02em; line-height: 1.25; }`,
+    `.summary { font-size: 1rem; color: #475569; margin-bottom: 1.25rem; line-height: 1.6; }`,
 
-    /* Price badge */
-    `.price-badge { display: inline-flex; align-items: center; gap: 0.4rem; background: linear-gradient(135deg, #e6f4ea 0%, #d4edda 100%); border: 1.5px solid #4caf50; color: #1b5e20; font-weight: 700; font-size: 1rem; padding: 0.5rem 1rem; border-radius: 999px; margin-bottom: 1.25rem; }`,
+    /* Price tag */
+    `.price-tag { display: inline-flex; align-items: center; gap: 0.5rem; background: #f1f5f9; border: 1px solid #cbd5e1; color: #0f172a; font-weight: 600; font-size: 0.92rem; padding: 0.45rem 0.9rem; border-radius: 8px; margin-bottom: 1.5rem; }`,
+    `.price-label { color: #64748b; font-weight: 500; }`,
 
-    /* CTA row */
+    /* CTA buttons */
     `.cta-row { display: flex; flex-wrap: wrap; gap: 0.75rem; align-items: center; }`,
-    `.cta-whatsapp { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.85rem 1.4rem; border-radius: 999px; background: #25d366; color: white; text-decoration: none; font-weight: 700; font-size: 0.95rem; transition: transform 0.15s, box-shadow 0.15s; box-shadow: 0 4px 12px rgba(37,211,102,0.35); }`,
-    `.cta-whatsapp:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(37,211,102,0.45); }`,
-    `.cta-call { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.85rem 1.4rem; border-radius: 999px; background: #0f172a; color: white; text-decoration: none; font-weight: 700; font-size: 0.95rem; transition: transform 0.15s; }`,
-    `.cta-call:hover { transform: translateY(-2px); }`,
+    `.cta-whatsapp { display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem; padding: 0.75rem 1.35rem; border-radius: 8px; background: #16a34a; color: white; text-decoration: none; font-weight: 600; font-size: 0.92rem; transition: background 0.2s ease; border: none; cursor: pointer; }`,
+    `.cta-whatsapp:hover { background: #15803d; }`,
+    `.cta-call { display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem; padding: 0.75rem 1.35rem; border-radius: 8px; background: #0f172a; color: white; text-decoration: none; font-weight: 600; font-size: 0.92rem; transition: background 0.2s ease; }`,
+    `.cta-call:hover { background: #1e293b; }`,
 
-    /* Service image */
-    `.service-image img { width: 100%; height: auto; aspect-ratio: 3 / 2; border-radius: 18px; object-fit: cover; box-shadow: 0 8px 32px rgba(0,0,0,0.1); }`,
+    /* Image */
+    `.service-image img { width: 100%; height: auto; aspect-ratio: 4 / 3; border-radius: 12px; object-fit: cover; border: 1px solid #e2e8f0; }`,
 
-    /* Trust row */
-    `.trust-row { display: flex; flex-wrap: wrap; gap: 0.75rem; margin: 1.25rem 0; }`,
-    `.badge { display: inline-flex; align-items: center; gap: 0.4rem; background: white; border: 1px solid #e2e8f0; border-radius: 999px; padding: 0.45rem 1rem; font-size: 0.88rem; font-weight: 600; color: #334155; box-shadow: 0 2px 8px rgba(0,0,0,0.04); }`,
+    /* Trust pills */
+    `.trust-row { display: flex; flex-wrap: wrap; gap: 0.85rem; margin: 1.5rem 0; }`,
+    `.pill { display: inline-flex; align-items: center; gap: 0.45rem; background: white; border: 1px solid #e2e8f0; border-radius: 8px; padding: 0.5rem 0.9rem; font-size: 0.85rem; font-weight: 500; color: #334155; box-shadow: 0 1px 3px rgba(0,0,0,0.02); }`,
 
     /* Body */
-    `.service-body { background: white; padding: 2.5rem; border-radius: 24px; box-shadow: 0 18px 40px rgba(0,0,0,0.06); color: #334155; line-height: 1.8; }`,
-    `h2 { color: #0f172a; font-size: 1.3rem; margin-top: 0; margin-bottom: 1rem; }`,
-    `.inline-cta { background: #f8fbff; border: 1px solid #dbeafe; border-radius: 16px; padding: 1.5rem; margin: 1.5rem 0; }`,
-    `.cta-contact { display: inline-flex; align-items: center; padding: 0.85rem 1.4rem; border-radius: 999px; background: #1e73be; color: white; text-decoration: none; font-weight: 700; font-size: 0.95rem; transition: transform 0.15s; }`,
-    `.cta-contact:hover { transform: translateY(-2px); }`,
-    `.service-links { margin-top: 1.5rem; display: flex; gap: 0.75rem; flex-wrap: wrap; }`,
-    `.back-link { display: inline-block; padding: 0.6rem 1.1rem; border-radius: 999px; background: #f1f5f9; color: #475569; text-decoration: none; font-weight: 600; font-size: 0.9rem; }`,
-    `.back-link:hover { background: #e2e8f0; }`,
-    `.not-found { text-align: center; }`,
-    `@media (max-width: 768px) { .service-hero { grid-template-columns: 1fr; } h1 { font-size: 1.6rem; } }`
+    `.service-body { background: white; padding: 2.25rem; border-radius: 16px; border: 1px solid #e2e8f0; box-shadow: 0 4px 20px rgba(0,0,0,0.03); color: #334155; line-height: 1.7; font-size: 0.95rem; }`,
+    `h2 { color: #0f172a; font-size: 1.35rem; margin-top: 0; margin-bottom: 0.75rem; font-weight: 700; }`,
+
+    /* Inline CTA box */
+    `.inline-cta { background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 12px; padding: 1.75rem; margin: 2rem 0; display: flex; flex-direction: column; gap: 1rem; }`,
+    `.cta-text h3 { margin: 0 0 0.35rem; font-size: 1.1rem; color: #0f172a; font-weight: 600; }`,
+    `.cta-text p { margin: 0; color: #64748b; font-size: 0.9rem; }`,
+    `.cta-btns { display: flex; flex-wrap: wrap; gap: 0.75rem; }`,
+    `.cta-contact { display: inline-flex; align-items: center; justify-content: center; padding: 0.75rem 1.35rem; border-radius: 8px; background: #0284c7; color: white; text-decoration: none; font-weight: 600; font-size: 0.92rem; transition: background 0.2s ease; }`,
+    `.cta-contact:hover { background: #0369a1; }`,
+
+    `.service-links { margin-top: 1.75rem; display: flex; gap: 1rem; flex-wrap: wrap; border-top: 1px solid #f1f5f9; padding-top: 1.25rem; }`,
+    `.back-link { font-size: 0.88rem; color: #0284c7; text-decoration: none; font-weight: 500; }`,
+    `.back-link:hover { text-decoration: underline; }`,
+    `.not-found { text-align: center; padding: 4rem 1rem; }`,
+    `@media (max-width: 840px) { .service-hero { grid-template-columns: 1fr; } h1 { font-size: 1.75rem; } }`
   ]
 })
 export class ServicePageComponent implements OnInit, OnDestroy {
