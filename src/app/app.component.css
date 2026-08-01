@@ -11,55 +11,71 @@
   padding-top: 70px;
 }
 
-/* Floating Action Stack (WhatsApp & Email) */
-.floating-container {
+/* Floating Icon Stack (Exact Screenshot Match) */
+.floating-icons {
   position: fixed;
-  bottom: 24px;
-  right: 24px;
-  z-index: 1000;
+  bottom: 25px;
+  right: 25px;
   display: flex;
   flex-direction: column;
-  align-items: flex-end;
-  gap: 10px;
+  gap: 12px;
+  z-index: 1000;
 }
 
-.floating-btn {
-  display: inline-flex;
+.icon {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  font-size: 24px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
+  text-decoration: none;
+}
+
+.whatsapp {
+  background: #25D366;
+}
+
+.email {
+  background: #2196f3;
+}
+
+.icon:hover {
+  transform: scale(1.08);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+}
+
+/* Green WhatsApp Pill Box (Sitting neatly to the left of the blue Email circle) */
+.whatsapp-box {
+  position: fixed;
+  bottom: 25px;
+  right: 95px;
+  background: #25D366;
+  color: #ffffff;
+  padding: 10px 18px;
+  border-radius: 50px;
+  display: flex;
   align-items: center;
   gap: 8px;
-  color: white;
-  padding: 9px 15px;
-  border-radius: 50px;
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 600;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
   text-decoration: none;
-  transition: all 0.2s ease;
+  z-index: 1000;
+  transition: all 0.3s ease;
 }
 
-.floating-btn i {
+.whatsapp-box i {
   font-size: 18px;
 }
 
-.floating-wa-btn {
-  background: #16a34a;
-  box-shadow: 0 4px 14px rgba(22, 163, 74, 0.3);
-}
-
-.floating-wa-btn:hover {
-  background: #15803d;
+.whatsapp-box:hover {
+  background: #1eb753;
   transform: translateY(-2px);
-  box-shadow: 0 6px 18px rgba(22, 163, 74, 0.4);
-}
-
-.floating-email-btn {
-  background: #0f172a;
-  box-shadow: 0 4px 14px rgba(15, 23, 42, 0.25);
-}
-
-.floating-email-btn:hover {
-  background: #1e293b;
-  transform: translateY(-2px);
-  box-shadow: 0 6px 18px rgba(15, 23, 42, 0.35);
 }
 
 .mobile-sticky-cta {
@@ -67,7 +83,7 @@
 }
 
 @media (max-width: 768px) {
-  .floating-container {
+  .floating-icons, .whatsapp-box {
     display: none;
   }
   
@@ -97,10 +113,10 @@
   }
   
   .cta-call {
-    background-color: #0f172a;
+    background-color: #1e73be;
   }
   
   .cta-whatsapp {
-    background-color: #16a34a;
+    background-color: #25D366;
   }
 }
