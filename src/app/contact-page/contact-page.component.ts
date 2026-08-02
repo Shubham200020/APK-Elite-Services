@@ -358,22 +358,20 @@ export class ContactPageComponent implements OnInit {
     this.successWhatsAppUrl = `https://wa.me/${WA_NUMBER}?text=${msg}`;
 
     try {
-      const emailjs = await import('https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js' as any).catch(() => null);
+      const formData = new FormData();
+      formData.append('name', this.form.name);
+      formData.append('phone', this.form.phone);
+      formData.append('service', this.form.service);
+      formData.append('locality', this.form.locality);
+      formData.append('message', this.form.message || 'No additional details provided');
+      formData.append('_subject', `New Website Contact Form: ${this.form.service} (${this.form.locality})`);
+      formData.append('_captcha', 'false');
 
-      if (emailjs) {
-        await (window as any).emailjs.send(
-          'YOUR_SERVICE_ID',
-          'YOUR_TEMPLATE_ID',
-          {
-            from_name: this.form.name,
-            phone: this.form.phone,
-            service: this.form.service,
-            locality: this.form.locality,
-            message: this.form.message || 'No additional details provided.'
-          },
-          'YOUR_PUBLIC_KEY'
-        );
-      }
+      await fetch('https://formsubmit.co/ajax/info@apkeliteservices.in', {
+        method: 'POST',
+        body: formData,
+        headers: { 'Accept': 'application/json' }
+      }).catch(() => null);
 
       this.submitted = true;
       if ((window as any).umami) {

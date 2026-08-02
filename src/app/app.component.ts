@@ -3,6 +3,7 @@ import { isPlatformBrowser } from '@angular/common';
 import { NavigationEnd, Router, RouterOutlet } from '@angular/router';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { AddFooterComponent } from './add-footer/add-footer.component';
+import { QuoteModalComponent } from './quote-modal/quote-modal.component';
 import { filter } from 'rxjs/operators';
 
 declare global {
@@ -15,7 +16,7 @@ declare global {
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, NavBarComponent, AddFooterComponent],
+  imports: [RouterOutlet, NavBarComponent, AddFooterComponent, QuoteModalComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
@@ -26,8 +27,6 @@ export class AppComponent {
   ) {}
 
   ngOnInit() {
-    // Titles, descriptions, canonicals and social tags are owned by each
-    // routed page component via SeoService; static defaults live in index.html.
     if (!isPlatformBrowser(this.platformId)) {
       return;
     }
