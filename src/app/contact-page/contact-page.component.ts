@@ -71,7 +71,10 @@ interface ContactForm {
           </div>
 
           <!-- Form View -->
-          <form *ngIf="!submitted" (ngSubmit)="onSubmit()" #contactFormRef="ngForm" novalidate>
+          <form *ngIf="!submitted" (ngSubmit)="onSubmit()" action="https://api.web3forms.com/submit" method="POST" target="web3forms_contact_iframe" #contactFormRef="ngForm" novalidate>
+            <input type="hidden" name="access_key" value="101e2c51-0926-4dd3-b6e5-a04034ecca39" />
+            <input type="hidden" name="from_name" value="APK Elite Services Website" />
+            <input type="hidden" name="subject" [value]="'New Website Contact Form: ' + form.service + ' (' + form.locality + ')'" />
             
             <div class="form-row">
               <div class="field" [class.error]="nameFld.invalid && nameFld.touched">
@@ -146,13 +149,14 @@ interface ContactForm {
               {{ submitError }}
             </div>
 
-            <button type="submit" class="btn-submit" [class.loading]="sending" [disabled]="sending || contactFormRef.invalid">
-              <span *ngIf="!sending">Submit Enquiry</span>
-              <span *ngIf="sending">Submitting...</span>
+            <button type="submit" class="btn-submit" [class.loading]="sending" [disabled]="contactFormRef.invalid">
+              <span>Submit Enquiry</span>
             </button>
 
             <p class="form-footer-note">Your privacy is important to us. View our <a routerLink="/privacy-policy">Privacy Policy</a>.</p>
           </form>
+
+          <iframe name="web3forms_contact_iframe" style="display:none;"></iframe>
         </div>
 
         <!-- Sidebar Info -->
@@ -354,43 +358,18 @@ export class ContactPageComponent implements OnInit {
     });
   }
 
-  async onSubmit(): Promise<void> {
+  onSubmit(): void {
     if (!isPlatformBrowser(this.platformId)) return;
-    this.sending = true;
-    this.submitError = '';
 
     const msg = `Hi%2C%20I%27m%20${encodeURIComponent(this.form.name)}%20from%20${encodeURIComponent(this.form.locality)}.%20I%20need%20${encodeURIComponent(this.form.service)}.%20My%20number%20is%20${encodeURIComponent(this.form.phone)}.%20${encodeURIComponent(this.form.message)}`;
     this.successWhatsAppUrl = `https://wa.me/${WA_NUMBER}?text=${msg}`;
     this.successEmailUrl = `mailto:info@apkeliteservices.in?subject=${encodeURIComponent('Website Contact Form: ' + this.form.service + ' (' + this.form.locality + ')')}&body=${encodeURIComponent('Name: ' + this.form.name + '\nPhone: ' + this.form.phone + '\nService: ' + this.form.service + '\nLocality: ' + this.form.locality + '\nDetails: ' + (this.form.message || 'None'))}`;
 
-    try {
-      await fetch('https://api.web3forms.com/submit', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Accept': 'application/json'
-        },
-        body: JSON.stringify({
-          access_key: '101e2c51-0926-4dd3-b6e5-a04034ecca39',
-          name: this.form.name,
-          phone: this.form.phone,
-          service: this.form.service,
-          locality: this.form.locality,
-          message: this.form.message || 'No additional details provided',
-          subject: `New Website Contact Form: ${this.form.service} (${this.form.locality})`,
-          from_name: 'APK Elite Services Website'
-        })
-      });
-
-      this.submitted = true;
-      if ((window as any).umami) {
-        (window as any).umami.track('contact-form-submit', { service: this.form.service, locality: this.form.locality });
-      }
-    } catch (err) {
-      this.submitted = true;
-    } finally {
-      this.sending = false;
+    if ((window as any).umami) {
+      (window as any).umami.track('contact-form-submit', { service: this.form.service, locality: this.form.locality });
     }
+
+    this.submitted = true;
   }
 
   resetForm(): void {

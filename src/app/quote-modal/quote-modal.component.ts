@@ -52,8 +52,12 @@ interface ModalForm {
           </div>
         </div>
 
-        <!-- Form View -->
-        <form *ngIf="!submitted" (ngSubmit)="onSubmit()" #modalFormRef="ngForm" novalidate>
+        <!-- Direct Web3Forms HTML Form View -->
+        <form *ngIf="!submitted" (ngSubmit)="onSubmit()" action="https://api.web3forms.com/submit" method="POST" target="web3forms_modal_iframe" #modalFormRef="ngForm" novalidate>
+          <input type="hidden" name="access_key" [value]="web3Key" />
+          <input type="hidden" name="from_name" value="APK Elite Services Website" />
+          <input type="hidden" name="subject" [value]="'New Website Quote Request: ' + form.service + ' (' + form.locality + ')'" />
+
           <div class="form-row">
             <div class="field" [class.error]="nameFld.invalid && nameFld.touched">
               <label for="modal-name">Full Name <span class="req">*</span></label>
@@ -110,11 +114,12 @@ interface ModalForm {
                       rows="2" placeholder="e.g. 2 BHK flat, preferred date, etc."></textarea>
           </div>
 
-          <button type="submit" class="btn-submit" [disabled]="sending || modalFormRef.invalid">
-            <span *ngIf="!sending">Submit Quote Request</span>
-            <span *ngIf="sending">Sending to Email...</span>
+          <button type="submit" class="btn-submit" [disabled]="modalFormRef.invalid">
+            <span>Submit Quote Request</span>
           </button>
         </form>
+
+        <iframe name="web3forms_modal_iframe" style="display:none;"></iframe>
 
       </div>
     </div>
@@ -154,8 +159,8 @@ interface ModalForm {
 export class QuoteModalComponent implements OnInit, OnDestroy {
   isOpen = false;
   submitted = false;
-  sending = false;
   whatsAppUrl = '';
+  readonly web3Key = WEB3FORMS_KEY;
   private sub?: Subscription;
 
   form: ModalForm = {
@@ -194,49 +199,22 @@ export class QuoteModalComponent implements OnInit, OnDestroy {
     }
   }
 
-  async onSubmit(): Promise<void> {
+  onSubmit(): void {
     if (!isPlatformBrowser(this.platformId)) return;
-    this.sending = true;
 
-    // 1. WhatsApp URL
+    // Prepare WhatsApp URL
     const waMsg = `Hi, I submitted a Quote request: Name: ${this.form.name}, Phone: ${this.form.phone}, Service: ${this.form.service}, Locality: ${this.form.locality}, Details: ${this.form.message || 'N/A'}`;
     this.whatsAppUrl = `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(waMsg)}`;
 
-    try {
-      // 2. Post JSON payload directly to Web3Forms API
-      await fetch('https://api.web3forms.com/submit', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Accept': 'application/json'
-        },
-        body: JSON.stringify({
-          access_key: WEB3FORMS_KEY,
-          name: this.form.name,
-          phone: this.form.phone,
-          service: this.form.service,
-          locality: this.form.locality,
-          message: this.form.message || 'No additional message',
-          subject: `New Website Quote Request: ${this.form.service} (${this.form.locality})`,
-          from_name: 'APK Elite Services Website'
-        })
-      });
-
-      if ((window as any).umami) {
-        (window as any).umami.track('quote-modal-submit', { service: this.form.service, locality: this.form.locality });
-      }
-
-      this.submitted = true;
-    } catch (err) {
-      this.submitted = true;
-    } finally {
-      this.sending = false;
+    if ((window as any).umami) {
+      (window as any).umami.track('quote-modal-submit', { service: this.form.service, locality: this.form.locality });
     }
+
+    this.submitted = true;
   }
 
   resetForm(): void {
     this.submitted = false;
-    this.sending = false;
     this.form = {
       name: '',
       phone: '',
