@@ -364,9 +364,16 @@ export class ContactPageComponent implements OnInit {
   onSubmit(): void {
     if (!isPlatformBrowser(this.platformId)) return;
 
+    const subject = `Website Contact Form: ${this.form.service} (${this.form.locality})`;
+    const body = `Hi APK Elite Services Team,\n\nI submitted an enquiry via your website:\n\nName: ${this.form.name}\nPhone: ${this.form.phone}\nService Required: ${this.form.service}\nLocality: ${this.form.locality}\nMessage: ${this.form.message || 'None'}\n\nPlease contact me promptly.`;
+
+    this.successEmailUrl = `mailto:info@apkeliteservices.in?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+
     const msg = `Hi%2C%20I%27m%20${encodeURIComponent(this.form.name)}%20from%20${encodeURIComponent(this.form.locality)}.%20I%20need%20${encodeURIComponent(this.form.service)}.%20My%20number%20is%20${encodeURIComponent(this.form.phone)}.%20${encodeURIComponent(this.form.message)}`;
     this.successWhatsAppUrl = `https://wa.me/${WA_NUMBER}?text=${msg}`;
-    this.successEmailUrl = `mailto:info@apkeliteservices.in?subject=${encodeURIComponent('Website Contact Form: ' + this.form.service + ' (' + this.form.locality + ')')}&body=${encodeURIComponent('Name: ' + this.form.name + '\nPhone: ' + this.form.phone + '\nService: ' + this.form.service + '\nLocality: ' + this.form.locality + '\nDetails: ' + (this.form.message || 'None'))}`;
+
+    // Trigger direct native email draft open to info@apkeliteservices.in
+    window.location.href = this.successEmailUrl;
 
     if ((window as any).umami) {
       (window as any).umami.track('contact-form-submit', { service: this.form.service, locality: this.form.locality });

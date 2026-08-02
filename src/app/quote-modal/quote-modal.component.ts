@@ -5,12 +5,11 @@ import { Subscription } from 'rxjs';
 import { QuoteModalService } from '../shared/quote-modal.service';
 
 const WA_NUMBER = '918830167863';
-const WEB3FORMS_KEY = '101e2c51-0926-4dd3-b6e5-a04034ecca39';
+const TARGET_EMAIL = 'info@apkeliteservices.in';
 
 interface ModalForm {
   name: string;
   phone: string;
-  email: string;
   service: string;
   locality: string;
   message: string;
@@ -31,9 +30,9 @@ interface ModalForm {
 
         <!-- Header -->
         <div class="modal-header">
-          <span class="badge-tag">Fast Response · Pune</span>
+          <span class="badge-tag">Direct Email · Pune</span>
           <h2>Request a Free Service Quote</h2>
-          <p>Fill out your details below. Your request will be delivered directly to our email team.</p>
+          <p>Fill out your details below to send a quote request directly to info&#64;apkeliteservices.in.</p>
         </div>
 
         <!-- Success State -->
@@ -41,10 +40,14 @@ interface ModalForm {
           <div class="check-circle">
             <svg viewBox="0 0 24 24" width="28" height="28"><path fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
           </div>
-          <h3>Quote Request Sent to Email!</h3>
-          <p>Thank you, <strong>{{ form.name }}</strong>. We have received your request and our team will contact you shortly on <strong>{{ form.phone }}</strong>.</p>
+          <h3>Quote Details Ready to Send!</h3>
+          <p>Thank you, <strong>{{ form.name }}</strong>. Click below to send your request via Email or WhatsApp:</p>
           
           <div class="success-actions">
+            <a [href]="mailtoUrl" class="btn-email" data-umami-event="modal-email-click">
+              <svg viewBox="0 0 24 24" width="18" height="18"><path fill="currentColor" d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+              <span>Send Email to {{ targetEmail }}</span>
+            </a>
             <a [href]="whatsAppUrl" target="_blank" rel="noopener" class="btn-whatsapp" data-umami-event="modal-whatsapp-click">
               <svg class="icon-svg" viewBox="0 0 24 24" width="18" height="18"><path fill="currentColor" d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path fill="currentColor" d="M12 0C5.373 0 0 5.373 0 12c0 2.125.555 4.122 1.528 5.855L0 24l6.335-1.502A11.95 11.95 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.885 0-3.655-.52-5.17-1.426l-.37-.22-3.76.892.946-3.653-.24-.383A9.96 9.96 0 0 1 2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
               <span>Instant Chat on WhatsApp</span>
@@ -53,12 +56,8 @@ interface ModalForm {
           </div>
         </div>
 
-        <!-- Direct Web3Forms HTML Form View -->
-        <form *ngIf="!submitted" (ngSubmit)="onSubmit()" action="https://api.web3forms.com/submit" method="POST" target="web3forms_modal_iframe" #modalFormRef="ngForm" novalidate>
-          <input type="hidden" name="access_key" [value]="web3Key" />
-          <input type="hidden" name="from_name" value="APK Elite Services Website" />
-          <input type="hidden" name="subject" [value]="'New Website Quote Request: ' + form.service + ' (' + form.locality + ')'" />
-
+        <!-- Form View -->
+        <form *ngIf="!submitted" (ngSubmit)="onSubmit()" #modalFormRef="ngForm" novalidate>
           <div class="form-row">
             <div class="field" [class.error]="nameFld.invalid && nameFld.touched">
               <label for="modal-name">Full Name <span class="req">*</span></label>
@@ -77,12 +76,6 @@ interface ModalForm {
 
           <div class="form-row">
             <div class="field">
-              <label for="modal-email">Email Address <span class="opt">(Optional)</span></label>
-              <input id="modal-email" name="email" type="email" [(ngModel)]="form.email"
-                     placeholder="name@domain.com" autocomplete="email" />
-            </div>
-
-            <div class="field">
               <label for="modal-service">Service <span class="req">*</span></label>
               <select id="modal-service" name="service" [(ngModel)]="form.service" required>
                 <option value="Deep Cleaning">Deep Cleaning</option>
@@ -97,22 +90,22 @@ interface ModalForm {
                 <option value="Other">Other Service</option>
               </select>
             </div>
-          </div>
 
-          <div class="field">
-            <label for="modal-locality">Locality in Pune <span class="req">*</span></label>
-            <select id="modal-locality" name="locality" [(ngModel)]="form.locality" required>
-              <option value="Baner">Baner</option>
-              <option value="Wakad">Wakad</option>
-              <option value="Kharadi">Kharadi</option>
-              <option value="Hinjewadi">Hinjewadi</option>
-              <option value="Viman Nagar">Viman Nagar</option>
-              <option value="Kothrud">Kothrud</option>
-              <option value="Hadapsar">Hadapsar</option>
-              <option value="Pimpri-Chinchwad">Pimpri-Chinchwad</option>
-              <option value="Aundh">Aundh</option>
-              <option value="Other">Other Area</option>
-            </select>
+            <div class="field">
+              <label for="modal-locality">Locality in Pune <span class="req">*</span></label>
+              <select id="modal-locality" name="locality" [(ngModel)]="form.locality" required>
+                <option value="Baner">Baner</option>
+                <option value="Wakad">Wakad</option>
+                <option value="Kharadi">Kharadi</option>
+                <option value="Hinjewadi">Hinjewadi</option>
+                <option value="Viman Nagar">Viman Nagar</option>
+                <option value="Kothrud">Kothrud</option>
+                <option value="Hadapsar">Hadapsar</option>
+                <option value="Pimpri-Chinchwad">Pimpri-Chinchwad</option>
+                <option value="Aundh">Aundh</option>
+                <option value="Other">Other Area</option>
+              </select>
+            </div>
           </div>
 
           <div class="field">
@@ -122,11 +115,9 @@ interface ModalForm {
           </div>
 
           <button type="submit" class="btn-submit" [disabled]="modalFormRef.invalid">
-            <span>Submit Quote Request</span>
+            <span>Send Quote Request via Email</span>
           </button>
         </form>
-
-        <iframe name="web3forms_modal_iframe" style="display:none;"></iframe>
 
       </div>
     </div>
@@ -157,6 +148,8 @@ interface ModalForm {
     `.success-state h3 { font-size: 1.2rem; color: #0f172a; margin: 0 0 0.4rem; }`,
     `.success-state p { color: #475569; font-size: 0.88rem; line-height: 1.5; margin: 0 0 1.25rem; }`,
     `.success-actions { display: flex; flex-direction: column; gap: 0.65rem; }`,
+    `.btn-email { display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem; padding: 0.75rem; border-radius: 8px; background: #0f172a; color: white; text-decoration: none; font-weight: 600; font-size: 0.9rem; }`,
+    `.btn-email:hover { background: #1e293b; }`,
     `.btn-whatsapp { display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem; padding: 0.75rem; border-radius: 8px; background: #16a34a; color: white; text-decoration: none; font-weight: 600; font-size: 0.9rem; }`,
     `.btn-whatsapp:hover { background: #15803d; }`,
     `.btn-done { background: #f1f5f9; border: 1px solid #cbd5e1; color: #334155; padding: 0.6rem; border-radius: 8px; font-weight: 600; font-size: 0.85rem; cursor: pointer; }`,
@@ -167,13 +160,13 @@ export class QuoteModalComponent implements OnInit, OnDestroy {
   isOpen = false;
   submitted = false;
   whatsAppUrl = '';
-  readonly web3Key = WEB3FORMS_KEY;
+  mailtoUrl = '';
+  readonly targetEmail = TARGET_EMAIL;
   private sub?: Subscription;
 
   form: ModalForm = {
     name: '',
     phone: '',
-    email: '',
     service: 'Deep Cleaning',
     locality: 'Baner',
     message: ''
@@ -210,14 +203,18 @@ export class QuoteModalComponent implements OnInit, OnDestroy {
   onSubmit(): void {
     if (!isPlatformBrowser(this.platformId)) return;
 
-    // Default email if user didn't enter one
-    if (!this.form.email) {
-      this.form.email = 'customer@apkeliteservices.in';
-    }
+    // 1. Prepare formatted mailto URL (Direct email to info@apkeliteservices.in)
+    const subject = `Service Quote Request: ${this.form.service} (${this.form.locality})`;
+    const body = `Hi APK Elite Services Team,\n\nI would like to request a quote with the following details:\n\nName: ${this.form.name}\nPhone / Mobile: ${this.form.phone}\nService Required: ${this.form.service}\nLocality: ${this.form.locality}\nProperty Details: ${this.form.message || 'None'}\n\nPlease respond with pricing and availability.`;
 
-    // Prepare WhatsApp URL
-    const waMsg = `Hi, I submitted a Quote request: Name: ${this.form.name}, Phone: ${this.form.phone}, Email: ${this.form.email}, Service: ${this.form.service}, Locality: ${this.form.locality}, Details: ${this.form.message || 'N/A'}`;
+    this.mailtoUrl = `mailto:${TARGET_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+
+    // 2. Prepare WhatsApp backup URL
+    const waMsg = `Hi, I submitted a Quote request: Name: ${this.form.name}, Phone: ${this.form.phone}, Service: ${this.form.service}, Locality: ${this.form.locality}, Details: ${this.form.message || 'N/A'}`;
     this.whatsAppUrl = `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(waMsg)}`;
+
+    // 3. Open user's email client directly pre-filled with all details
+    window.location.href = this.mailtoUrl;
 
     if ((window as any).umami) {
       (window as any).umami.track('quote-modal-submit', { service: this.form.service, locality: this.form.locality });
@@ -231,7 +228,6 @@ export class QuoteModalComponent implements OnInit, OnDestroy {
     this.form = {
       name: '',
       phone: '',
-      email: '',
       service: 'Deep Cleaning',
       locality: 'Baner',
       message: ''
