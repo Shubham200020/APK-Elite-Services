@@ -3,6 +3,8 @@
 Updated: August 2, 2026
 
 ## 🟢 Completed in Code (new-web branch)
+- [x] **"Get Quote" Navbar Button & Popup Modal (`QuoteModalComponent`)** — Added a prominent "Get Quote" CTA button in desktop & mobile navbar. Clicking it triggers an instant modal form.
+- [x] **Automatic Email Delivery via FormSubmit.co** — Integrated zero-setup serverless backend (`https://formsubmit.co/ajax/info@apkeliteservices.in`). All form submissions from the modal and `/contact` page send formatted HTML emails directly to `info@apkeliteservices.in`.
 - [x] **🎆 Diwali Deep Cleaning Landing Page (`/diwali-deep-cleaning-pune`)** — Published with 15% festival offer badge, checklist & calculator.
 - [x] **📍 Locality SEO Landing Pages** — Built for key high-income Pune areas:
   - `/services/deep-cleaning-baner`
