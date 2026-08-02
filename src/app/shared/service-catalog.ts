@@ -161,5 +161,7 @@ export const SERVICE_CATALOG: ServiceItem[] = [
 ];
 
 export function getServiceBySlug(slug: string | null): ServiceItem | undefined {
-  return SERVICE_CATALOG.find((service) => service.slug === slug);
+  if (!slug) return undefined;
+  const target = slug.endsWith('-pune') ? slug.replace(/-pune$/, '') : slug;
+  return SERVICE_CATALOG.find((service) => service.slug === target || service.slug === slug);
 }

@@ -23,6 +23,9 @@ export const routes: Routes = [
   { path: 'services/deep-cleaning-wakad', component: LocalityPageComponent },
   { path: 'services/deep-cleaning-kharadi', component: LocalityPageComponent },
   { path: 'services/deep-cleaning-hinjewadi', component: LocalityPageComponent },
+  { path: 'services/sofa-cleaning-pune', component: ServicePageComponent },
+  { path: 'services/office-cleaning-pune', component: ServicePageComponent },
+  { path: 'services/post-construction-cleaning-pune', component: ServicePageComponent },
   { path: 'services/:slug', component: ServicePageComponent },
   { path: '**', component: NotFoundComponent }
 ];
