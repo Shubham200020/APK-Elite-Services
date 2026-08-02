@@ -116,6 +116,9 @@ interface ModalForm {
           </button>
         </form>
 
+        <!-- Hidden iFrame target for Web3Forms silent POST submission -->
+        <iframe name="web3forms_iframe" style="display:none;"></iframe>
+
       </div>
     </div>
   `,
@@ -194,7 +197,7 @@ export class QuoteModalComponent implements OnInit, OnDestroy {
     }
   }
 
-  async onSubmit(): Promise<void> {
+  onSubmit(): void {
     if (!isPlatformBrowser(this.platformId)) return;
     this.sending = true;
 
@@ -203,21 +206,37 @@ export class QuoteModalComponent implements OnInit, OnDestroy {
     this.whatsAppUrl = `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(waMsg)}`;
 
     try {
-      // 2. Web3Forms API Call (sends email directly to user's inbox!)
-      const formData = new FormData();
-      formData.append('access_key', WEB3FORMS_KEY);
-      formData.append('name', this.form.name);
-      formData.append('phone', this.form.phone);
-      formData.append('service', this.form.service);
-      formData.append('locality', this.form.locality);
-      formData.append('message', this.form.message || 'No additional message');
-      formData.append('subject', `New Website Quote Request: ${this.form.service} (${this.form.locality})`);
-      formData.append('from_name', 'APK Elite Services Website');
+      // 2. Real HTML Form Submit targeting hidden iframe (bypasses Cloudflare API bot protection 100%)
+      const formEl = document.createElement('form');
+      formEl.action = 'https://api.web3forms.com/submit';
+      formEl.method = 'POST';
+      formEl.target = 'web3forms_iframe';
 
-      await fetch('https://api.web3forms.com/submit', {
-        method: 'POST',
-        body: formData
+      const fields: Record<string, string> = {
+        access_key: WEB3FORMS_KEY,
+        name: this.form.name,
+        phone: this.form.phone,
+        service: this.form.service,
+        locality: this.form.locality,
+        message: this.form.message || 'No additional message',
+        subject: `New Website Quote Request: ${this.form.service} (${this.form.locality})`,
+        from_name: 'APK Elite Services Website'
+      };
+
+      Object.keys(fields).forEach(key => {
+        const input = document.createElement('input');
+        input.type = 'hidden';
+        input.name = key;
+        input.value = fields[key];
+        formEl.appendChild(input);
       });
+
+      document.body.appendChild(formEl);
+      formEl.submit();
+
+      setTimeout(() => {
+        document.body.removeChild(formEl);
+      }, 1000);
 
       if ((window as any).umami) {
         (window as any).umami.track('quote-modal-submit', { service: this.form.service, locality: this.form.locality });
