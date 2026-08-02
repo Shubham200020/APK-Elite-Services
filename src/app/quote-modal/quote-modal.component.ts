@@ -25,14 +25,14 @@ interface ModalForm {
         
         <!-- Close Button -->
         <button type="button" class="close-btn" (click)="close()" aria-label="Close quote modal">
-          <svg viewBox="0 0 24 24" width="20" height="20"><path fill="currentColor" d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+          <svg viewBox="0 0 24 24" width="20" height="20"><path fill="currentColor" d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 13.41 12z"/></svg>
         </button>
 
         <!-- Header -->
         <div class="modal-header">
           <span class="badge-tag">Fast Response · Pune</span>
           <h2>Request a Free Service Quote</h2>
-          <p>Fill out the form below. Your request will be sent directly to our email team.</p>
+          <p>Fill out your details below to send a quote inquiry directly to our team.</p>
         </div>
 
         <!-- Success State -->
@@ -40,10 +40,14 @@ interface ModalForm {
           <div class="check-circle">
             <svg viewBox="0 0 24 24" width="28" height="28"><path fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
           </div>
-          <h3>Quote Request Sent to Email!</h3>
-          <p>Thank you, <strong>{{ form.name }}</strong>. We have sent your details to <strong>{{ targetEmail }}</strong> and our team will contact you on <strong>{{ form.phone }}</strong>.</p>
+          <h3>Quote Details Ready to Send!</h3>
+          <p>Thank you, <strong>{{ form.name }}</strong>. Click below to send your request via Email or WhatsApp:</p>
           
           <div class="success-actions">
+            <a [href]="emailUrl" class="btn-email" data-umami-event="modal-email-click">
+              <svg viewBox="0 0 24 24" width="18" height="18"><path fill="currentColor" d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+              <span>Send via Email ({{ targetEmail }})</span>
+            </a>
             <a [href]="whatsAppUrl" target="_blank" rel="noopener" class="btn-whatsapp" data-umami-event="modal-whatsapp-click">
               <svg class="icon-svg" viewBox="0 0 24 24" width="18" height="18"><path fill="currentColor" d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path fill="currentColor" d="M12 0C5.373 0 0 5.373 0 12c0 2.125.555 4.122 1.528 5.855L0 24l6.335-1.502A11.95 11.95 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.885 0-3.655-.52-5.17-1.426l-.37-.22-3.76.892.946-3.653-.24-.383A9.96 9.96 0 0 1 2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
               <span>Instant Chat on WhatsApp</span>
@@ -111,8 +115,8 @@ interface ModalForm {
           </div>
 
           <button type="submit" class="btn-submit" [disabled]="sending || modalFormRef.invalid">
-            <span *ngIf="!sending">Send Quote Request via Email</span>
-            <span *ngIf="sending">Sending to Email...</span>
+            <span *ngIf="!sending">Submit Quote Request</span>
+            <span *ngIf="sending">Processing...</span>
           </button>
         </form>
 
@@ -145,6 +149,8 @@ interface ModalForm {
     `.success-state h3 { font-size: 1.2rem; color: #0f172a; margin: 0 0 0.4rem; }`,
     `.success-state p { color: #475569; font-size: 0.88rem; line-height: 1.5; margin: 0 0 1.25rem; }`,
     `.success-actions { display: flex; flex-direction: column; gap: 0.65rem; }`,
+    `.btn-email { display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem; padding: 0.75rem; border-radius: 8px; background: #0f172a; color: white; text-decoration: none; font-weight: 600; font-size: 0.9rem; }`,
+    `.btn-email:hover { background: #1e293b; }`,
     `.btn-whatsapp { display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem; padding: 0.75rem; border-radius: 8px; background: #16a34a; color: white; text-decoration: none; font-weight: 600; font-size: 0.9rem; }`,
     `.btn-whatsapp:hover { background: #15803d; }`,
     `.btn-done { background: #f1f5f9; border: 1px solid #cbd5e1; color: #334155; padding: 0.6rem; border-radius: 8px; font-weight: 600; font-size: 0.85rem; cursor: pointer; }`,
@@ -156,6 +162,7 @@ export class QuoteModalComponent implements OnInit, OnDestroy {
   submitted = false;
   sending = false;
   whatsAppUrl = '';
+  emailUrl = '';
   readonly targetEmail = TARGET_EMAIL;
   private sub?: Subscription;
 
@@ -199,19 +206,24 @@ export class QuoteModalComponent implements OnInit, OnDestroy {
     if (!isPlatformBrowser(this.platformId)) return;
     this.sending = true;
 
-    // 1. Prepare WhatsApp fallback URL
-    const msg = `Hi, I submitted a Quote request on your website: Name: ${this.form.name}, Phone: ${this.form.phone}, Service: ${this.form.service}, Locality: ${this.form.locality}, Details: ${this.form.message || 'N/A'}`;
-    this.whatsAppUrl = `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(msg)}`;
+    // 1. WhatsApp URL
+    const waMsg = `Hi, I submitted a Quote request: Name: ${this.form.name}, Phone: ${this.form.phone}, Service: ${this.form.service}, Locality: ${this.form.locality}, Details: ${this.form.message || 'N/A'}`;
+    this.whatsAppUrl = `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(waMsg)}`;
+
+    // 2. Direct mailto URL (Opens user's email client directly to info@apkeliteservices.in)
+    const emailSubject = `New Website Quote Request: ${this.form.service} (${this.form.locality})`;
+    const emailBody = `Name: ${this.form.name}\nPhone: ${this.form.phone}\nService: ${this.form.service}\nLocality: ${this.form.locality}\nMessage: ${this.form.message || 'None'}`;
+    this.emailUrl = `mailto:${TARGET_EMAIL}?subject=${encodeURIComponent(emailSubject)}&body=${encodeURIComponent(emailBody)}`;
 
     try {
-      // 2. Post form data to FormSubmit.co AJAX API (Sends email directly to info@apkeliteservices.in)
+      // 3. Post to FormSubmit backend API
       const formData = new FormData();
       formData.append('name', this.form.name);
       formData.append('phone', this.form.phone);
       formData.append('service', this.form.service);
       formData.append('locality', this.form.locality);
       formData.append('message', this.form.message || 'No additional message');
-      formData.append('_subject', `New Website Quote Request: ${this.form.service} (${this.form.locality})`);
+      formData.append('_subject', emailSubject);
       formData.append('_captcha', 'false');
 
       await fetch(`https://formsubmit.co/ajax/${TARGET_EMAIL}`, {
@@ -220,7 +232,6 @@ export class QuoteModalComponent implements OnInit, OnDestroy {
         headers: { 'Accept': 'application/json' }
       }).catch(() => null);
 
-      // Track Umami analytics event
       if ((window as any).umami) {
         (window as any).umami.track('quote-modal-submit', { service: this.form.service, locality: this.form.locality });
       }

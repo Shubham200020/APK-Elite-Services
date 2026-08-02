@@ -58,6 +58,10 @@ interface ContactForm {
             <h3>Enquiry Submitted Successfully</h3>
             <p>Thank you, <strong>{{ form.name }}</strong>. We have received your message and will contact you shortly on <strong>{{ form.phone }}</strong>.</p>
             <div class="success-actions">
+              <a [href]="successEmailUrl" class="btn-call" data-umami-event="email-post-form">
+                <svg viewBox="0 0 24 24" width="18" height="18"><path fill="currentColor" d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+                <span>Send via Email (info&#64;apkeliteservices.in)</span>
+              </a>
               <a [href]="successWhatsAppUrl" target="_blank" rel="noopener" class="btn-whatsapp" data-umami-event="whatsapp-post-form">
                 <svg class="icon-svg" viewBox="0 0 24 24" width="18" height="18"><path fill="currentColor" d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path fill="currentColor" d="M12 0C5.373 0 0 5.373 0 12c0 2.125.555 4.122 1.528 5.855L0 24l6.335-1.502A11.95 11.95 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.885 0-3.655-.52-5.17-1.426l-.37-.22-3.76.892.946-3.653-.24-.383A9.96 9.96 0 0 1 2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
                 <span>Continue on WhatsApp</span>
@@ -327,6 +331,7 @@ export class ContactPageComponent implements OnInit {
   sending = false;
   submitError = '';
   successWhatsAppUrl = '';
+  successEmailUrl = '';
 
   form: ContactForm = {
     name: '',
@@ -356,6 +361,7 @@ export class ContactPageComponent implements OnInit {
 
     const msg = `Hi%2C%20I%27m%20${encodeURIComponent(this.form.name)}%20from%20${encodeURIComponent(this.form.locality)}.%20I%20need%20${encodeURIComponent(this.form.service)}.%20My%20number%20is%20${encodeURIComponent(this.form.phone)}.%20${encodeURIComponent(this.form.message)}`;
     this.successWhatsAppUrl = `https://wa.me/${WA_NUMBER}?text=${msg}`;
+    this.successEmailUrl = `mailto:info@apkeliteservices.in?subject=${encodeURIComponent('Website Contact Form: ' + this.form.service + ' (' + this.form.locality + ')')}&body=${encodeURIComponent('Name: ' + this.form.name + '\nPhone: ' + this.form.phone + '\nService: ' + this.form.service + '\nLocality: ' + this.form.locality + '\nDetails: ' + (this.form.message || 'None'))}`;
 
     try {
       const formData = new FormData();
