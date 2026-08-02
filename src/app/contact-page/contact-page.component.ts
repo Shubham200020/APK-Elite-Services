@@ -364,47 +364,23 @@ export class ContactPageComponent implements OnInit {
     this.successEmailUrl = `mailto:info@apkeliteservices.in?subject=${encodeURIComponent('Website Contact Form: ' + this.form.service + ' (' + this.form.locality + ')')}&body=${encodeURIComponent('Name: ' + this.form.name + '\nPhone: ' + this.form.phone + '\nService: ' + this.form.service + '\nLocality: ' + this.form.locality + '\nDetails: ' + (this.form.message || 'None'))}`;
 
     try {
-      let iframe = document.getElementById('web3forms_contact_iframe') as HTMLIFrameElement;
-      if (!iframe) {
-        iframe = document.createElement('iframe');
-        iframe.id = 'web3forms_contact_iframe';
-        iframe.name = 'web3forms_contact_iframe';
-        iframe.style.display = 'none';
-        document.body.appendChild(iframe);
-      }
-
-      const formEl = document.createElement('form');
-      formEl.action = 'https://api.web3forms.com/submit';
-      formEl.method = 'POST';
-      formEl.target = 'web3forms_contact_iframe';
-
-      const fields: Record<string, string> = {
-        access_key: '101e2c51-0926-4dd3-b6e5-a04034ecca39',
-        name: this.form.name,
-        phone: this.form.phone,
-        service: this.form.service,
-        locality: this.form.locality,
-        message: this.form.message || 'No additional details provided',
-        subject: `New Website Contact Form: ${this.form.service} (${this.form.locality})`,
-        from_name: 'APK Elite Services Website'
-      };
-
-      Object.keys(fields).forEach(key => {
-        const input = document.createElement('input');
-        input.type = 'hidden';
-        input.name = key;
-        input.value = fields[key];
-        formEl.appendChild(input);
+      await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify({
+          access_key: '101e2c51-0926-4dd3-b6e5-a04034ecca39',
+          name: this.form.name,
+          phone: this.form.phone,
+          service: this.form.service,
+          locality: this.form.locality,
+          message: this.form.message || 'No additional details provided',
+          subject: `New Website Contact Form: ${this.form.service} (${this.form.locality})`,
+          from_name: 'APK Elite Services Website'
+        })
       });
-
-      document.body.appendChild(formEl);
-      formEl.submit();
-
-      setTimeout(() => {
-        if (document.body.contains(formEl)) {
-          document.body.removeChild(formEl);
-        }
-      }, 1000);
 
       this.submitted = true;
       if ((window as any).umami) {
