@@ -365,19 +365,19 @@ export class ContactPageComponent implements OnInit {
 
     try {
       const formData = new FormData();
+      formData.append('access_key', '101e2c51-0926-4dd3-b6e5-a04034ecca39');
       formData.append('name', this.form.name);
       formData.append('phone', this.form.phone);
       formData.append('service', this.form.service);
       formData.append('locality', this.form.locality);
       formData.append('message', this.form.message || 'No additional details provided');
-      formData.append('_subject', `New Website Contact Form: ${this.form.service} (${this.form.locality})`);
-      formData.append('_captcha', 'false');
+      formData.append('subject', `New Website Contact Form: ${this.form.service} (${this.form.locality})`);
+      formData.append('from_name', 'APK Elite Services Website');
 
-      await fetch('https://formsubmit.co/ajax/info@apkeliteservices.in', {
+      await fetch('https://api.web3forms.com/submit', {
         method: 'POST',
-        body: formData,
-        headers: { 'Accept': 'application/json' }
-      }).catch(() => null);
+        body: formData
+      });
 
       this.submitted = true;
       if ((window as any).umami) {
