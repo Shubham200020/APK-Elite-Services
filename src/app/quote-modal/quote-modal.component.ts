@@ -10,6 +10,7 @@ const WEB3FORMS_KEY = '101e2c51-0926-4dd3-b6e5-a04034ecca39';
 interface ModalForm {
   name: string;
   phone: string;
+  email: string;
   service: string;
   locality: string;
   message: string;
@@ -76,6 +77,12 @@ interface ModalForm {
 
           <div class="form-row">
             <div class="field">
+              <label for="modal-email">Email Address <span class="opt">(Optional)</span></label>
+              <input id="modal-email" name="email" type="email" [(ngModel)]="form.email"
+                     placeholder="name@domain.com" autocomplete="email" />
+            </div>
+
+            <div class="field">
               <label for="modal-service">Service <span class="req">*</span></label>
               <select id="modal-service" name="service" [(ngModel)]="form.service" required>
                 <option value="Deep Cleaning">Deep Cleaning</option>
@@ -90,22 +97,22 @@ interface ModalForm {
                 <option value="Other">Other Service</option>
               </select>
             </div>
+          </div>
 
-            <div class="field">
-              <label for="modal-locality">Locality in Pune <span class="req">*</span></label>
-              <select id="modal-locality" name="locality" [(ngModel)]="form.locality" required>
-                <option value="Baner">Baner</option>
-                <option value="Wakad">Wakad</option>
-                <option value="Kharadi">Kharadi</option>
-                <option value="Hinjewadi">Hinjewadi</option>
-                <option value="Viman Nagar">Viman Nagar</option>
-                <option value="Kothrud">Kothrud</option>
-                <option value="Hadapsar">Hadapsar</option>
-                <option value="Pimpri-Chinchwad">Pimpri-Chinchwad</option>
-                <option value="Aundh">Aundh</option>
-                <option value="Other">Other Area</option>
-              </select>
-            </div>
+          <div class="field">
+            <label for="modal-locality">Locality in Pune <span class="req">*</span></label>
+            <select id="modal-locality" name="locality" [(ngModel)]="form.locality" required>
+              <option value="Baner">Baner</option>
+              <option value="Wakad">Wakad</option>
+              <option value="Kharadi">Kharadi</option>
+              <option value="Hinjewadi">Hinjewadi</option>
+              <option value="Viman Nagar">Viman Nagar</option>
+              <option value="Kothrud">Kothrud</option>
+              <option value="Hadapsar">Hadapsar</option>
+              <option value="Pimpri-Chinchwad">Pimpri-Chinchwad</option>
+              <option value="Aundh">Aundh</option>
+              <option value="Other">Other Area</option>
+            </select>
           </div>
 
           <div class="field">
@@ -166,6 +173,7 @@ export class QuoteModalComponent implements OnInit, OnDestroy {
   form: ModalForm = {
     name: '',
     phone: '',
+    email: '',
     service: 'Deep Cleaning',
     locality: 'Baner',
     message: ''
@@ -202,8 +210,13 @@ export class QuoteModalComponent implements OnInit, OnDestroy {
   onSubmit(): void {
     if (!isPlatformBrowser(this.platformId)) return;
 
+    // Default email if user didn't enter one
+    if (!this.form.email) {
+      this.form.email = 'customer@apkeliteservices.in';
+    }
+
     // Prepare WhatsApp URL
-    const waMsg = `Hi, I submitted a Quote request: Name: ${this.form.name}, Phone: ${this.form.phone}, Service: ${this.form.service}, Locality: ${this.form.locality}, Details: ${this.form.message || 'N/A'}`;
+    const waMsg = `Hi, I submitted a Quote request: Name: ${this.form.name}, Phone: ${this.form.phone}, Email: ${this.form.email}, Service: ${this.form.service}, Locality: ${this.form.locality}, Details: ${this.form.message || 'N/A'}`;
     this.whatsAppUrl = `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(waMsg)}`;
 
     if ((window as any).umami) {
@@ -218,6 +231,7 @@ export class QuoteModalComponent implements OnInit, OnDestroy {
     this.form = {
       name: '',
       phone: '',
+      email: '',
       service: 'Deep Cleaning',
       locality: 'Baner',
       message: ''

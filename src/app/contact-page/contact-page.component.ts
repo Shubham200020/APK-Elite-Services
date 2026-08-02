@@ -9,6 +9,7 @@ const WA_NUMBER = '918830167863';
 interface ContactForm {
   name: string;
   phone: string;
+  email: string;
   service: string;
   locality: string;
   message: string;
@@ -75,6 +76,7 @@ interface ContactForm {
             <input type="hidden" name="access_key" value="101e2c51-0926-4dd3-b6e5-a04034ecca39" />
             <input type="hidden" name="from_name" value="APK Elite Services Website" />
             <input type="hidden" name="subject" [value]="'New Website Contact Form: ' + form.service + ' (' + form.locality + ')'" />
+            <input type="hidden" name="email" [value]="form.email || 'customer@apkeliteservices.in'" />
             
             <div class="form-row">
               <div class="field" [class.error]="nameFld.invalid && nameFld.touched">
@@ -340,6 +342,7 @@ export class ContactPageComponent implements OnInit {
   form: ContactForm = {
     name: '',
     phone: '',
+    email: '',
     service: '',
     locality: '',
     message: ''
@@ -375,6 +378,6 @@ export class ContactPageComponent implements OnInit {
   resetForm(): void {
     this.submitted = false;
     this.submitError = '';
-    this.form = { name: '', phone: '', service: '', locality: '', message: '' };
+    this.form = { name: '', phone: '', email: '', service: '', locality: '', message: '' };
   }
 }
